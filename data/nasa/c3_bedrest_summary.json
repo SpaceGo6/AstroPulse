@@ -1,0 +1,94 @@
+{
+  "source": "NASA Life Sciences Data Archive, study MR035G, Campaign 3: whole-body DXA during ~60-day head-down bed rest and recovery",
+  "what_it_is": "% change from each participant's last pre-bed-rest scan, at the end of bed rest, after getting up, and at ~6-month and ~1-year follow-ups. Triplicate scans averaged per session.",
+  "participants": 31,
+  "excluded_participants": [
+    "C3C_7352"
+  ],
+  "exclusion_reason": "NASA's own 'ID Check' column marks these scans 'WRONG ORDER'",
+  "phases": {
+    "end_of_bedrest": {
+      "days_from_pre_mean": 74,
+      "bedrest_day_mean": 63,
+      "whole_body_bmd_pct": {
+        "n": 14,
+        "mean": -0.71,
+        "sd": 0.96
+      },
+      "pelvis_bmd_pct": {
+        "n": 14,
+        "mean": -1.74,
+        "sd": 2.26
+      },
+      "lean_mass_pct": {
+        "n": 9,
+        "mean": -4.46,
+        "sd": 2.65
+      }
+    },
+    "post": {
+      "days_from_pre_mean": 88,
+      "bedrest_day_mean": null,
+      "whole_body_bmd_pct": {
+        "n": 25,
+        "mean": -0.38,
+        "sd": 1.14
+      },
+      "pelvis_bmd_pct": {
+        "n": 25,
+        "mean": -1.02,
+        "sd": 1.98
+      },
+      "lean_mass_pct": {
+        "n": 16,
+        "mean": -1.58,
+        "sd": 3.04
+      }
+    },
+    "followup_6mo": {
+      "days_from_pre_mean": 271,
+      "bedrest_day_mean": null,
+      "whole_body_bmd_pct": {
+        "n": 20,
+        "mean": 0.54,
+        "sd": 1.65
+      },
+      "pelvis_bmd_pct": {
+        "n": 20,
+        "mean": 0.26,
+        "sd": 2.37
+      },
+      "lean_mass_pct": {
+        "n": 14,
+        "mean": -1.63,
+        "sd": 2.58
+      }
+    },
+    "followup_1y": {
+      "days_from_pre_mean": 445,
+      "bedrest_day_mean": null,
+      "whole_body_bmd_pct": {
+        "n": 24,
+        "mean": -0.31,
+        "sd": 1.14
+      },
+      "pelvis_bmd_pct": {
+        "n": 24,
+        "mean": -0.25,
+        "sd": 1.79
+      },
+      "lean_mass_pct": {
+        "n": 21,
+        "mean": -0.9,
+        "sd": 3.25
+      }
+    }
+  },
+  "pelvis_bmd_pct_per_30_days_in_bedrest": -0.83,
+  "caveats": [
+    "Bed rest is an Earth analog for microgravity, not spaceflight.",
+    "Not every participant has every phase; n differs per phase.",
+    "Some campaign sub-groups may have received countermeasures; groups are not separated here.",
+    "Lean mass uses Body_Comp files only (other files define lean differently)."
+  ]
+}

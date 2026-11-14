@@ -1,0 +1,59 @@
+[
+ {
+  "days": [
+   100,
+   125
+  ],
+  "crew": [
+   "maya"
+  ],
+  "event": "Busy mission phase: resistance exercise ~50% of target",
+  "app_should": "Bone forecast turns Watch"
+ },
+ {
+  "days": [
+   120,
+   122
+  ],
+  "crew": [
+   "maya",
+   "leo",
+   "sam"
+  ],
+  "event": "Solar particle event: radiation spike",
+  "app_should": "Radiation alert, storm-shelter action"
+ },
+ {
+  "days": [
+   136,
+   140
+  ],
+  "crew": [
+   "maya"
+  ],
+  "event": "BP climbs 128 -> 148, headaches, CO2 up, sleep under 6 h",
+  "app_should": "BP Watch + action plan"
+ },
+ {
+  "days": [
+   140,
+   140
+  ],
+  "crew": [
+   "maya"
+  ],
+  "event": "One bad reading 168/104 at 07:34 (slipped cuff)",
+  "app_should": "Re-measure prompt, not an alarm"
+ },
+ {
+  "days": [
+   152,
+   152
+  ],
+  "crew": [
+   "leo"
+  ],
+  "event": "stream_emergency.json minute 75: HR > 130 and SpO2 < 90",
+  "app_should": "Red Alert triage"
+ }
+]

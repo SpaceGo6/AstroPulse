@@ -1,0 +1,848 @@
+{
+ "crew_id": "leo",
+ "mission_day": 152,
+ "start_time": "14:00",
+ "note": "Simulated. Change starts at minute 69; HR > 130 and SpO2 < 90 together from minute 75; recovers after triage from minute 93.",
+ "rows": [
+  {
+   "minute": 0,
+   "hr": 68,
+   "spo2": 96.7,
+   "resp": 14,
+   "skin_temp": 33.6
+  },
+  {
+   "minute": 1,
+   "hr": 65,
+   "spo2": 97.5,
+   "resp": 13,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 2,
+   "hr": 65,
+   "spo2": 96.8,
+   "resp": 13,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 3,
+   "hr": 67,
+   "spo2": 96.9,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 4,
+   "hr": 68,
+   "spo2": 97.5,
+   "resp": 14,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 5,
+   "hr": 68,
+   "spo2": 96.7,
+   "resp": 13,
+   "skin_temp": 33.1
+  },
+  {
+   "minute": 6,
+   "hr": 67,
+   "spo2": 96.5,
+   "resp": 14,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 7,
+   "hr": 63,
+   "spo2": 97.3,
+   "resp": 13,
+   "skin_temp": 33.2
+  },
+  {
+   "minute": 8,
+   "hr": 72,
+   "spo2": 97.3,
+   "resp": 12,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 9,
+   "hr": 68,
+   "spo2": 97.6,
+   "resp": 13,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 10,
+   "hr": 68,
+   "spo2": 96.2,
+   "resp": 14,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 11,
+   "hr": 66,
+   "spo2": 97.2,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 12,
+   "hr": 70,
+   "spo2": 97.3,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 13,
+   "hr": 70,
+   "spo2": 96.9,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 14,
+   "hr": 69,
+   "spo2": 97.3,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 15,
+   "hr": 64,
+   "spo2": 97.1,
+   "resp": 13,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 16,
+   "hr": 67,
+   "spo2": 97.3,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 17,
+   "hr": 68,
+   "spo2": 97.1,
+   "resp": 13,
+   "skin_temp": 33.6
+  },
+  {
+   "minute": 18,
+   "hr": 71,
+   "spo2": 96.8,
+   "resp": 13,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 19,
+   "hr": 66,
+   "spo2": 96.6,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 20,
+   "hr": 70,
+   "spo2": 97.1,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 21,
+   "hr": 71,
+   "spo2": 97.6,
+   "resp": 13,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 22,
+   "hr": 67,
+   "spo2": 96.9,
+   "resp": 14,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 23,
+   "hr": 67,
+   "spo2": 97.4,
+   "resp": 15,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 24,
+   "hr": 68,
+   "spo2": 97.5,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 25,
+   "hr": 65,
+   "spo2": 97.5,
+   "resp": 15,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 26,
+   "hr": 65,
+   "spo2": 97.8,
+   "resp": 14,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 27,
+   "hr": 67,
+   "spo2": 97.2,
+   "resp": 15,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 28,
+   "hr": 71,
+   "spo2": 97.3,
+   "resp": 14,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 29,
+   "hr": 67,
+   "spo2": 96.8,
+   "resp": 13,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 30,
+   "hr": 67,
+   "spo2": 97.1,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 31,
+   "hr": 67,
+   "spo2": 97.4,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 32,
+   "hr": 66,
+   "spo2": 97.8,
+   "resp": 14,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 33,
+   "hr": 67,
+   "spo2": 97.3,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 34,
+   "hr": 65,
+   "spo2": 96.7,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 35,
+   "hr": 70,
+   "spo2": 96.3,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 36,
+   "hr": 69,
+   "spo2": 97.8,
+   "resp": 14,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 37,
+   "hr": 66,
+   "spo2": 96.5,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 38,
+   "hr": 67,
+   "spo2": 97.5,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 39,
+   "hr": 67,
+   "spo2": 97.1,
+   "resp": 13,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 40,
+   "hr": 69,
+   "spo2": 97.1,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 41,
+   "hr": 68,
+   "spo2": 97.6,
+   "resp": 14,
+   "skin_temp": 33.6
+  },
+  {
+   "minute": 42,
+   "hr": 70,
+   "spo2": 96.9,
+   "resp": 14,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 43,
+   "hr": 70,
+   "spo2": 98.1,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 44,
+   "hr": 69,
+   "spo2": 97.0,
+   "resp": 14,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 45,
+   "hr": 65,
+   "spo2": 96.7,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 46,
+   "hr": 68,
+   "spo2": 97.2,
+   "resp": 15,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 47,
+   "hr": 67,
+   "spo2": 97.4,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 48,
+   "hr": 70,
+   "spo2": 96.3,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 49,
+   "hr": 65,
+   "spo2": 97.5,
+   "resp": 15,
+   "skin_temp": 33.6
+  },
+  {
+   "minute": 50,
+   "hr": 67,
+   "spo2": 97.3,
+   "resp": 14,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 51,
+   "hr": 73,
+   "spo2": 96.6,
+   "resp": 16,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 52,
+   "hr": 69,
+   "spo2": 96.9,
+   "resp": 15,
+   "skin_temp": 33.6
+  },
+  {
+   "minute": 53,
+   "hr": 68,
+   "spo2": 96.7,
+   "resp": 13,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 54,
+   "hr": 64,
+   "spo2": 96.4,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 55,
+   "hr": 67,
+   "spo2": 96.8,
+   "resp": 13,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 56,
+   "hr": 68,
+   "spo2": 97.1,
+   "resp": 14,
+   "skin_temp": 33.2
+  },
+  {
+   "minute": 57,
+   "hr": 71,
+   "spo2": 96.2,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 58,
+   "hr": 70,
+   "spo2": 97.2,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 59,
+   "hr": 65,
+   "spo2": 97.0,
+   "resp": 13,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 60,
+   "hr": 66,
+   "spo2": 97.0,
+   "resp": 14,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 61,
+   "hr": 67,
+   "spo2": 96.4,
+   "resp": 13,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 62,
+   "hr": 64,
+   "spo2": 97.5,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 63,
+   "hr": 68,
+   "spo2": 97.3,
+   "resp": 15,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 64,
+   "hr": 67,
+   "spo2": 97.8,
+   "resp": 12,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 65,
+   "hr": 66,
+   "spo2": 97.4,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 66,
+   "hr": 66,
+   "spo2": 97.1,
+   "resp": 13,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 67,
+   "hr": 66,
+   "spo2": 96.7,
+   "resp": 13,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 68,
+   "hr": 69,
+   "spo2": 96.7,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 69,
+   "hr": 73,
+   "spo2": 96.8,
+   "resp": 15,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 70,
+   "hr": 83,
+   "spo2": 95.5,
+   "resp": 16,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 71,
+   "hr": 94,
+   "spo2": 93.7,
+   "resp": 18,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 72,
+   "hr": 103,
+   "spo2": 92.2,
+   "resp": 20,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 73,
+   "hr": 114,
+   "spo2": 90.8,
+   "resp": 21,
+   "skin_temp": 33.6
+  },
+  {
+   "minute": 74,
+   "hr": 121,
+   "spo2": 89.5,
+   "resp": 22,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 75,
+   "hr": 132,
+   "spo2": 88.0,
+   "resp": 24,
+   "skin_temp": 33.6
+  },
+  {
+   "minute": 76,
+   "hr": 136,
+   "spo2": 87.5,
+   "resp": 25,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 77,
+   "hr": 136,
+   "spo2": 87.4,
+   "resp": 25,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 78,
+   "hr": 136,
+   "spo2": 87.5,
+   "resp": 23,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 79,
+   "hr": 134,
+   "spo2": 89.0,
+   "resp": 24,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 80,
+   "hr": 133,
+   "spo2": 87.4,
+   "resp": 22,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 81,
+   "hr": 137,
+   "spo2": 88.1,
+   "resp": 24,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 82,
+   "hr": 138,
+   "spo2": 88.5,
+   "resp": 25,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 83,
+   "hr": 138,
+   "spo2": 87.9,
+   "resp": 25,
+   "skin_temp": 33.6
+  },
+  {
+   "minute": 84,
+   "hr": 137,
+   "spo2": 89.0,
+   "resp": 24,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 85,
+   "hr": 135,
+   "spo2": 89.2,
+   "resp": 23,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 86,
+   "hr": 132,
+   "spo2": 88.1,
+   "resp": 25,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 87,
+   "hr": 135,
+   "spo2": 88.1,
+   "resp": 24,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 88,
+   "hr": 137,
+   "spo2": 87.5,
+   "resp": 23,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 89,
+   "hr": 136,
+   "spo2": 87.9,
+   "resp": 23,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 90,
+   "hr": 138,
+   "spo2": 87.4,
+   "resp": 22,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 91,
+   "hr": 139,
+   "spo2": 88.1,
+   "resp": 26,
+   "skin_temp": 33.2
+  },
+  {
+   "minute": 92,
+   "hr": 134,
+   "spo2": 87.1,
+   "resp": 24,
+   "skin_temp": 33.6
+  },
+  {
+   "minute": 93,
+   "hr": 135,
+   "spo2": 88.4,
+   "resp": 24,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 94,
+   "hr": 134,
+   "spo2": 88.4,
+   "resp": 24,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 95,
+   "hr": 131,
+   "spo2": 89.1,
+   "resp": 23,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 96,
+   "hr": 124,
+   "spo2": 89.4,
+   "resp": 23,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 97,
+   "hr": 127,
+   "spo2": 90.2,
+   "resp": 22,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 98,
+   "hr": 119,
+   "spo2": 90.3,
+   "resp": 22,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 99,
+   "hr": 113,
+   "spo2": 91.0,
+   "resp": 21,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 100,
+   "hr": 111,
+   "spo2": 91.1,
+   "resp": 21,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 101,
+   "hr": 105,
+   "spo2": 91.6,
+   "resp": 20,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 102,
+   "hr": 103,
+   "spo2": 92.5,
+   "resp": 20,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 103,
+   "hr": 105,
+   "spo2": 92.6,
+   "resp": 19,
+   "skin_temp": 33.1
+  },
+  {
+   "minute": 104,
+   "hr": 97,
+   "spo2": 93.3,
+   "resp": 19,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 105,
+   "hr": 97,
+   "spo2": 93.5,
+   "resp": 18,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 106,
+   "hr": 93,
+   "spo2": 94.2,
+   "resp": 18,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 107,
+   "hr": 92,
+   "spo2": 94.5,
+   "resp": 17,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 108,
+   "hr": 87,
+   "spo2": 95.1,
+   "resp": 17,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 109,
+   "hr": 85,
+   "spo2": 96.1,
+   "resp": 16,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 110,
+   "hr": 77,
+   "spo2": 95.9,
+   "resp": 16,
+   "skin_temp": 33.2
+  },
+  {
+   "minute": 111,
+   "hr": 65,
+   "spo2": 97.6,
+   "resp": 14,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 112,
+   "hr": 70,
+   "spo2": 97.3,
+   "resp": 14,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 113,
+   "hr": 66,
+   "spo2": 96.7,
+   "resp": 15,
+   "skin_temp": 33.3
+  },
+  {
+   "minute": 114,
+   "hr": 67,
+   "spo2": 96.8,
+   "resp": 14,
+   "skin_temp": 33.1
+  },
+  {
+   "minute": 115,
+   "hr": 65,
+   "spo2": 97.1,
+   "resp": 15,
+   "skin_temp": 33.5
+  },
+  {
+   "minute": 116,
+   "hr": 67,
+   "spo2": 96.9,
+   "resp": 13,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 117,
+   "hr": 68,
+   "spo2": 96.8,
+   "resp": 14,
+   "skin_temp": 33.4
+  },
+  {
+   "minute": 118,
+   "hr": 69,
+   "spo2": 97.9,
+   "resp": 14,
+   "skin_temp": 33.2
+  },
+  {
+   "minute": 119,
+   "hr": 65,
+   "spo2": 97.0,
+   "resp": 13,
+   "skin_temp": 33.4
+  }
+ ]
+}

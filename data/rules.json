@@ -1,0 +1,244 @@
+{
+ "baseline_window_days": 14,
+ "watch_rule": "beyond 2 SD of the personal 14-day baseline for 3 days in a row",
+ "remeasure_rule": "single reading more than 3 SD away from the personal day-to-day change",
+ "indicators": [
+  {
+   "id": "bp",
+   "label": "Blood pressure",
+   "unit": "mmHg",
+   "fields": [
+    "bp_sys",
+    "bp_dia"
+   ],
+   "input": "check-in (cuff)",
+   "how_to_measure": "Rest 5 min with feet anchored; cuff on bare left upper arm at heart level; do not talk.",
+   "why_in_space": "Without gravity, body fluids shift toward the head and the heart and vessels adapt; cabin CO2 can add headaches.",
+   "hazards": [
+    "Altered gravity",
+    "Hostile closed environment"
+   ],
+   "act_limit": {
+    "bp_sys_gte": 160,
+    "bp_dia_gte": 100
+   },
+   "actions": {
+    "self_care": "Drink 500 mL water, check cabin CO2, 15 min quiet rest, re-check at 19:00",
+    "crew": "Tell the crew medical officer if still above 140/90 tonight",
+    "flight_surgeon": "Send the 30-day trend report if still high tomorrow"
+   },
+   "source": {
+    "title": "NASA HRP resources linked from the challenge page",
+    "url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources"
+   }
+  },
+  {
+   "id": "hr_rest",
+   "label": "Resting heart rate",
+   "unit": "bpm",
+   "fields": [
+    "hr_rest"
+   ],
+   "input": "wearable",
+   "how_to_measure": "Overnight minimum from the wearable.",
+   "why_in_space": "The heart adapts to doing less work against gravity.",
+   "hazards": [
+    "Altered gravity"
+   ],
+   "act_limit": {
+    "hr_gte": 130
+   },
+   "source": {
+    "title": "NASA HRP resources linked from the challenge page",
+    "url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources"
+   }
+  },
+  {
+   "id": "spo2",
+   "label": "Oxygen saturation",
+   "unit": "%",
+   "fields": [
+    "spo2_min"
+   ],
+   "input": "wearable",
+   "how_to_measure": "Wearable, or handheld pulse oximeter on a warm finger.",
+   "why_in_space": "Cabin air problems or illness can lower blood oxygen.",
+   "hazards": [
+    "Hostile closed environment"
+   ],
+   "act_limit": {
+    "spo2_lt": 90
+   },
+   "source": {
+    "title": "NASA HRP resources linked from the challenge page",
+    "url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources"
+   }
+  },
+  {
+   "id": "glucose",
+   "label": "Blood sugar (fasting)",
+   "unit": "mg/dL",
+   "fields": [
+    "glucose"
+   ],
+   "input": "check-in",
+   "how_to_measure": "Finger-stick glucose meter before breakfast.",
+   "why_in_space": "Inactivity and diet changes can affect how the body handles sugar.",
+   "hazards": [
+    "Altered gravity",
+    "Isolation & confinement"
+   ],
+   "act_limit": {
+    "glucose_lt": 70,
+    "glucose_gte": 180
+   },
+   "source": {
+    "title": "NASA HRP resources linked from the challenge page",
+    "url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources"
+   }
+  },
+  {
+   "id": "temp",
+   "label": "Body temperature",
+   "unit": "°C",
+   "fields": [
+    "temp"
+   ],
+   "input": "check-in",
+   "how_to_measure": "Thermometer under the tongue, 5 min after drinking.",
+   "why_in_space": "Immune changes in flight can make infections more likely.",
+   "hazards": [
+    "Space radiation",
+    "Hostile closed environment"
+   ],
+   "act_limit": {
+    "temp_gte": 38.0
+   },
+   "source": {
+    "title": "NASA HRP resources linked from the challenge page",
+    "url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources"
+   }
+  },
+  {
+   "id": "sleep",
+   "label": "Sleep",
+   "unit": "h",
+   "fields": [
+    "sleep_h"
+   ],
+   "input": "wearable",
+   "how_to_measure": "Wearable sleep estimate.",
+   "why_in_space": "Isolation, noise and a disrupted light-dark cycle shorten sleep.",
+   "hazards": [
+    "Isolation & confinement",
+    "Distance from Earth"
+   ],
+   "act_limit": null,
+   "source": {
+    "title": "NASA HRP resources linked from the challenge page",
+    "url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources"
+   }
+  },
+  {
+   "id": "mood",
+   "label": "Mood & stress",
+   "unit": "1-5",
+   "fields": [
+    "mood",
+    "stress"
+   ],
+   "input": "check-in (self-report)",
+   "how_to_measure": "Tap how you feel today; there is no objective mood sensor.",
+   "why_in_space": "Long isolation and confinement strain mood and focus.",
+   "hazards": [
+    "Isolation & confinement",
+    "Distance from Earth"
+   ],
+   "act_limit": null,
+   "source": {
+    "title": "NASA HRP resources linked from the challenge page",
+    "url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources"
+   }
+  },
+  {
+   "id": "bone",
+   "label": "Bone loading / bone forecast",
+   "unit": "% of pre-flight",
+   "fields": [
+    "ex_resist_min",
+    "bone_pct_est"
+   ],
+   "input": "exercise log + model",
+   "how_to_measure": "Bone density cannot be scanned in flight (DXA happens on Earth before and after); the app tracks exercise and forecasts.",
+   "why_in_space": "Without load, weight-bearing bones lose mineral; resistance exercise is the main countermeasure.",
+   "hazards": [
+    "Altered gravity"
+   ],
+   "watch_if_landing_loss_pct_gt": 2.5,
+   "model": {
+    "loss_no_exercise_pct_per_month": 1.25,
+    "loss_full_exercise_pct_per_month": 0.25,
+    "resist_target_min_per_week": 150,
+    "verify": true
+   },
+   "nasa_evidence": {
+    "study": "NASA MR035G bed-rest DXA (Earth analog)",
+    "pelvis_mean_pct_change_about_30_days": -0.83,
+    "n": 15,
+    "file": "data/nasa/dxa_bedrest_summary.json",
+    "healthy_reference": {
+     "study": "NASA MR035G screening DXA (healthy volunteers)",
+     "n": 15,
+     "spine_bmd_mean": 1.054,
+     "spine_bmd_sd": 0.087,
+     "total_hip_bmd_mean": 1.095,
+     "total_hip_bmd_sd": 0.11,
+     "file": "data/nasa/dxa_screening_reference.json"
+    },
+    "bedrest_60_day": {
+     "study": "NASA MR035G Campaign 3: ~60-day bed rest + recovery (Earth analog)",
+     "participants": 31,
+     "pelvis_pct_per_30_days_in_bedrest": -0.83,
+     "end_of_bedrest": {
+      "pelvis_pct": -1.74,
+      "lean_mass_pct": -4.46
+     },
+     "recovery_6mo_pelvis_pct": 0.26,
+     "recovery_1y_pelvis_pct": -0.25,
+     "file": "data/nasa/c3_bedrest_summary.json"
+    }
+   },
+   "source": {
+    "title": "NASA HRP resources linked from the challenge page",
+    "url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources"
+   }
+  },
+  {
+   "id": "radiation",
+   "label": "Radiation dose",
+   "unit": "mSv",
+   "fields": [
+    "rad_cum_msv"
+   ],
+   "input": "dosimeter (environment.json)",
+   "how_to_measure": "Read automatically from the onboard dosimeter.",
+   "why_in_space": "Outside Earth's magnetic field, cosmic rays and solar storms raise long-term health risks.",
+   "hazards": [
+    "Space radiation",
+    "Distance from Earth"
+   ],
+   "career_limit_msv": 600,
+   "model": {
+    "msv_per_day": 1.8,
+    "verify": true
+   },
+   "actions": {
+    "self_care": "Move to the storm shelter during a solar particle event"
+   },
+   "source": {
+    "title": "CSA: Monitoring Radiation for Astronaut Health (challenge resources)",
+    "url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources"
+   }
+  }
+ ]
+}
