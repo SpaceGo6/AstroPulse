@@ -1,0 +1,45 @@
+{
+  "source": "NASA Life Sciences Data Archive, study MR035G: Artificial Gravity pilot bed-rest study (UTMB, 2006), screening DXA scans",
+  "what_it_is": "One bone scan per healthy male volunteer at screening, before selection for bed rest. Use it as a healthy-adult reference for pre-flight bone density.",
+  "units": "BMD in g/cm^2; T-score = standard deviations from a young-adult reference (scanner-reported)",
+  "volunteers": 15,
+  "spine_bmd_l1_l4": {
+    "n": 15,
+    "mean": 1.054,
+    "sd": 0.087,
+    "min": 0.938,
+    "max": 1.218
+  },
+  "spine_t_score": {
+    "n": 15,
+    "mean": -0.533,
+    "sd": 0.685,
+    "min": -1.8,
+    "max": 0.5
+  },
+  "total_hip_bmd": {
+    "n": 15,
+    "mean": 1.095,
+    "sd": 0.11,
+    "min": 0.957,
+    "max": 1.313
+  },
+  "hip_t_score": {
+    "n": 15,
+    "mean": 0.187,
+    "sd": 0.609,
+    "min": -1.1,
+    "max": 1.2
+  },
+  "femoral_neck_bmd": {
+    "n": 15,
+    "mean": 0.927,
+    "sd": 0.12,
+    "min": 0.766,
+    "max": 1.234
+  },
+  "caveats": [
+    "Screening population only (healthy men); not astronauts.",
+    "Some volunteers have spine or hip only; n differs per field."
+  ]
+}

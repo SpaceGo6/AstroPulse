@@ -1,0 +1,42 @@
+{
+ "note": "PROTOTYPE protocols based on public sources, not NASA flight-surgeon checklists. The crew medical officer makes all treatment decisions.",
+ "scenarios": [
+  {
+   "id": "hypoxia_tachycardia",
+   "trigger": "hr > 130 AND spo2 < 90",
+   "title": "Heart rate high and oxygen low together",
+   "steps": [
+    "Stop activity and keep them still, upright, anchored in foot loops.",
+    "Confirm oxygen with the handheld pulse oximeter on a warm finger.",
+    "Check cabin O2, CO2 and pressure on the life-support panel.",
+    "Bring the medical kit and oxygen supply; the crew medical officer decides on oxygen.",
+    "Call the crew medical officer and read out the numbers on screen.",
+    "Re-check every 2 minutes; AstroPulse logs each reading for the flight surgeon report."
+   ]
+  },
+  {
+   "id": "fever",
+   "trigger": "temp >= 38.0",
+   "title": "Fever",
+   "steps": [
+    "Re-measure temperature in 15 minutes to confirm.",
+    "Log symptoms: sore throat, cough, rash, headache.",
+    "Rest and drink fluids; limit close contact with crewmates.",
+    "Tell the crew medical officer.",
+    "Re-check every 4 hours; escalate to the flight surgeon if above 38.5 °C or worsening."
+   ]
+  },
+  {
+   "id": "severe_bp",
+   "trigger": "bp_sys >= 160 OR bp_dia >= 100, confirmed by re-measure",
+   "title": "Very high blood pressure",
+   "steps": [
+    "Sit quietly for 5 minutes, then re-measure.",
+    "Ask about severe headache, vision changes, chest pain or weakness.",
+    "Call the crew medical officer now if any of those are present.",
+    "Check cabin CO2.",
+    "Send a report to the flight surgeon with the trend."
+   ]
+  }
+ ]
+}

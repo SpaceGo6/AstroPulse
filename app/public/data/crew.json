@@ -1,0 +1,65 @@
+[
+ {
+  "id": "maya",
+  "name": "Cmdr. Maya Singh",
+  "role": "Commander",
+  "dxa_subject": "1392",
+  "bp_sys": 118,
+  "bp_dia": 76,
+  "hr_rest": 62,
+  "hrv": 55,
+  "glucose": 90,
+  "temp": 36.7,
+  "sleep_h": 6.5,
+  "mood": 4,
+  "stress": 2,
+  "preflight_bone": {
+   "pelvis_bmd_g_cm2": 1.1973,
+   "spine_bmd_g_cm2": 0.9353,
+   "hip_troch_bmd_g_cm2": 0.7557,
+   "source": "Real pre-bed-rest DXA values of NASA MR035G participant 1392 (anonymized), used as this simulated crew member's pre-flight scan"
+  }
+ },
+ {
+  "id": "leo",
+  "name": "Leo Park",
+  "role": "Flight Engineer",
+  "dxa_subject": "4011",
+  "bp_sys": 122,
+  "bp_dia": 79,
+  "hr_rest": 64,
+  "hrv": 50,
+  "glucose": 92,
+  "temp": 36.6,
+  "sleep_h": 6.3,
+  "mood": 4,
+  "stress": 2,
+  "preflight_bone": {
+   "pelvis_bmd_g_cm2": 1.3873,
+   "spine_bmd_g_cm2": 1.1933,
+   "hip_troch_bmd_g_cm2": 1.056,
+   "source": "Real pre-bed-rest DXA values of NASA MR035G participant 4011 (anonymized), used as this simulated crew member's pre-flight scan"
+  }
+ },
+ {
+  "id": "sam",
+  "name": "Sam Okafor",
+  "role": "Mission Specialist",
+  "dxa_subject": "5695",
+  "bp_sys": 115,
+  "bp_dia": 74,
+  "hr_rest": 58,
+  "hrv": 62,
+  "glucose": 88,
+  "temp": 36.8,
+  "sleep_h": 6.7,
+  "mood": 4,
+  "stress": 2,
+  "preflight_bone": {
+   "pelvis_bmd_g_cm2": 1.1265,
+   "spine_bmd_g_cm2": 0.9103,
+   "hip_troch_bmd_g_cm2": 0.7166,
+   "source": "Real pre-bed-rest DXA values of NASA MR035G participant 5695 (anonymized), used as this simulated crew member's pre-flight scan"
+  }
+ }
+]
