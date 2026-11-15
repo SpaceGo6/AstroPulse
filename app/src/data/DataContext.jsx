@@ -6,8 +6,8 @@ import { rowsFor } from '../engine/engine.js';
 import { makeEntry, canonical } from '../audit/audit.js';
 import { sha256 } from '../audit/sha256.js';
 
-const FILES = ['crew', 'daily', 'environment', 'stream_emergency', 'rules', 'triage', 'events'];
-const NASA = ['dxa_bedrest_summary', 'dxa_screening_reference', 'c3_bedrest_summary'];
+const FILES = ['crew', 'daily', 'environment', 'stream_emergency', 'rules', 'triage', 'events', 'spine'];
+const NASA = ['dxa_bedrest_summary', 'dxa_screening_reference', 'c3_bedrest_summary', 'spine_bedrest_phases'];
 const DataCtx = createContext(null);
 const base = import.meta.env.BASE_URL;
 const CHECKIN_KEY = 'astropulse.checkin';

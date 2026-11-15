@@ -8,7 +8,7 @@ import { verifyChain, TYPES, makeEntry } from '../audit/audit.js';
 import { indicatorStatus } from '../engine/engine.js';
 import { Icon, PageHeader, StatusChip } from '../components/ui.jsx';
 
-const KIND = (t) => (t === 'WATCHDOG_ALERT' || t === 'CMO_CALLED' ? 'act' : t === 'REMEASURE_PROMPTED' || t === 'READING_KEPT' || t === 'ENGINE_DECISION' ? 'watch' : 'normal');
+const KIND = (t) => (t === 'WATCHDOG_ALERT' || t === 'CMO_CALLED' ? 'act' : t === 'REMEASURE_PROMPTED' || t === 'READING_KEPT' || t === 'ENGINE_DECISION' || t === 'SPINE_DOWNLINK' ? 'watch' : 'normal');
 const COLORS = { act: 'var(--bad-text)', watch: 'var(--warn)', normal: 'var(--text)' };
 const LABEL = { bp: 'Blood pressure', hr: 'Heart rate', temp: 'Temperature', glucose: 'Blood sugar', sleep: 'Sleep', mood: 'Mood & symptoms' };
 
@@ -30,6 +30,11 @@ function describe(e) {
     case 'CMO_CALLED': return `For ${d.patient} (HR ${d.heart_rate}, SpO₂ ${d.spo2})`;
     case 'REPORT_QUEUED': return `For ${d.patient}, sends at next downlink`;
     case 'ALERT_EXITED': return `${d.patient}: ${d.steps_done} steps done`;
+    case 'SPINE_SYMPTOM': return `Back pain ${d.pain}/10 (${d.where})${d.hunched ? ', hunched posture' : ''}`;
+    case 'IMAGING_ADDED': return `${d.test}: spine ${d.lumbar_bmd} g/cm² (${d.pct}% vs pre-flight)${d.status ? ` · ${d.status}` : ''}`;
+    case 'ULTRASOUND_ANALYZED': return d.estimate != null ? `Image ${d.image}: simulated AI estimate ${d.estimate} g/cm² (concept demo)` : `Image ${d.image}: ${String(d.result).replace(/_/g, ' ')}`;
+    case 'GROUND_NOTES_SAVED': return `Notes for the day ${d.report_day} report (${d.chars} characters)`;
+    case 'SPINE_DOWNLINK': return `${d.alerts} alert(s), packet hash ${d.packet_hash}`;
     case 'TABLET_USER_CHANGED': return `${d.from} → ${d.to}`;
     case 'DATA_LOADED': return `${d.daily_rows} daily rows, fingerprint ${d.dataset_fingerprint}`;
     default: return Object.entries(d).map(([k, v]) => `${k}: ${v}`).join(' · ');

@@ -49,4 +49,9 @@ export const TYPES = {
   CMO_CALLED: 'Crew medical officer called',
   REPORT_QUEUED: 'Report queued for flight surgeon',
   ALERT_EXITED: 'Alert screen closed',
+  SPINE_SYMPTOM: 'Back pain / posture reported',
+  IMAGING_ADDED: 'Imaging result added',
+  SPINE_DOWNLINK: 'Spine report queued for ground doctors',
+  ULTRASOUND_ANALYZED: 'Ultrasound image analysed (concept demo)',
+  GROUND_NOTES_SAVED: 'Ground doctor’s notes saved',
 };

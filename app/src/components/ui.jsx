@@ -6,6 +6,8 @@ const paths = {
   checkin: <><rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 3h6v3H9zM9 13l2 2 4-4" /></>,
   forecast: <><path d="M3 3v18h18" /><path d="M7 14l4-4 3 3 3-3" /><path d="M17 10l3-3" strokeDasharray="2 2" /></>,
   body: <><circle cx="12" cy="5" r="2.5" /><path d="M12 8v7M7 10l5-1 5 1M9.5 21l2.5-6 2.5 6" /></>,
+  spine: <><rect x="9" y="2.5" width="6" height="3.5" rx="1.2" /><rect x="8.5" y="7.5" width="7" height="3.5" rx="1.2" /><rect x="8" y="12.5" width="8" height="3.5" rx="1.2" /><rect x="7.5" y="17.5" width="9" height="4" rx="1.2" /></>,
+  send: <path d="M22 2L11 13M22 2l-7 20-4-9-9-4z" />,
   trends: <path d="M3 17l6-6 4 4 8-8M15 7h6v6" />,
   back: <path d="M19 12H5M11 6l-6 6 6 6" />,
   next: <path d="M5 12h14M13 6l6 6-6 6" />,
@@ -16,6 +18,7 @@ const paths = {
   book: <><path d="M4 5h11a3 3 0 0 1 3 3v12H7a3 3 0 0 1-3-3z" /><path d="M8 9h6M8 13h6" /></>,
   phone: <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />,
   wifiOff: <path d="M2 2l20 20M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 5.2-2.8M19 13a10 10 0 0 0-2.3-1.7M12 20h.01" />,
+  upload: <path d="M12 20V8M6 13l6-6 6 6M5 4h14" />,
   download: <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />,
   shield: <><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /><path d="M9 12l2 2 4-4" /></>,
 };

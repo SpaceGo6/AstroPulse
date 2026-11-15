@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mockRoutes from "./mockApi/routes.js";
+import ultrasoundRoutes from "./mockApi/ultrasoundMock.js";
 import { mockReadings } from "./mockApi/mockData.js";
 import { analyzeBoneMarkers } from "./analysis/analyzeBoneMarkers.js";
 import { analyzeTrends } from "./analysis/analyzeTrends.js";
@@ -10,7 +11,11 @@ import { analyzeBoneHealth } from "./analysis/analyzeBoneHealth.js";
 const app = express();
 const port = Number(process.env.PORT) || 3001;
 
-app.use(cors({ origin: ["http://localhost:5173", "http://localhost:3000"] }));
+// Frontend origins allowed to call the API. Override with CORS_ORIGINS="http://host:port,http://other:port".
+const allowedOrigins = (process.env.CORS_ORIGINS ??
+  "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,http://localhost:3000")
+  .split(",").map((o) => o.trim()).filter(Boolean);
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 app.get("/api/health", (_req, res) => {
@@ -18,6 +23,8 @@ app.get("/api/health", (_req, res) => {
 });
 
 app.use("/api/mock", mockRoutes);
+// Concept demo: simulated AI reading of spine ultrasound images (see mockApi/ultrasoundMock.js).
+app.use("/api/mock", ultrasoundRoutes);
 
 app.get("/api/astronauts/:astronautId/analysis", (req, res) => {
   const { astronautId } = req.params;

@@ -1,0 +1,1322 @@
+{
+ "about": "Simulated spine tracking. Pre-flight DXA values are real NASA MR035G participants; everything else is simulated.",
+ "landing_day": 180,
+ "schedule": [
+  {
+   "id": "dxa",
+   "test": "DXA spine scan (X-ray)",
+   "phase": "ground",
+   "when": "L-180, L-30, landing, +6 mo, +1 yr",
+   "shows": "Bone density (g/cm\u00b2), the gold standard",
+   "radiation": "Very low",
+   "cost": "$$",
+   "crew_min": 20
+  },
+  {
+   "id": "qct",
+   "test": "CT scan (QCT) of the spine",
+   "phase": "ground",
+   "when": "L-30 and landing (if ordered)",
+   "shows": "3D density: inner (trabecular) vs outer bone",
+   "radiation": "Higher",
+   "cost": "$$$",
+   "crew_min": 30
+  },
+  {
+   "id": "xray",
+   "test": "Spine X-ray",
+   "phase": "ground",
+   "when": "L-30 and landing",
+   "shows": "Vertebral fractures, posture / curve",
+   "radiation": "Low",
+   "cost": "$",
+   "crew_min": 10
+  },
+  {
+   "id": "us",
+   "test": "Spine ultrasound (REMS-type)",
+   "phase": "flight",
+   "when": "Every 30 days",
+   "shows": "Estimated spine density, trend between DXA scans",
+   "radiation": "None",
+   "cost": "$ (device once)",
+   "crew_min": 15
+  },
+  {
+   "id": "urine",
+   "test": "Urine: NTx + calcium",
+   "phase": "flight",
+   "when": "Every 14 days",
+   "shows": "Bone breakdown and calcium leaving the body (early warning)",
+   "radiation": "None",
+   "cost": "$",
+   "crew_min": 5
+  },
+  {
+   "id": "blood",
+   "test": "Blood: calcium, BSAP, vitamin D",
+   "phase": "flight",
+   "when": "Every 30 days",
+   "shows": "Bone building, calcium balance, vitamin D level",
+   "radiation": "None",
+   "cost": "$$",
+   "crew_min": 10
+  },
+  {
+   "id": "pain",
+   "test": "Back pain + posture check",
+   "phase": "flight",
+   "when": "Daily (in check-in)",
+   "shows": "Symptoms: back pain 0-10, where, hunched posture",
+   "radiation": "None",
+   "cost": "Free",
+   "crew_min": 1
+  },
+  {
+   "id": "exercise",
+   "test": "Exercise log",
+   "phase": "flight",
+   "when": "Daily (from exercise device)",
+   "shows": "Resistance minutes vs 150 min/week target",
+   "radiation": "None",
+   "cost": "Free",
+   "crew_min": 0
+  }
+ ],
+ "model": {
+  "loss_no_exercise_pct_per_month": 1.0,
+  "loss_full_exercise_pct_per_month": 0.3,
+  "target_resist_min_per_week": 150,
+  "recovery_half_life_days": 276,
+  "ultrasound_precision_pct": 0.4
+ },
+ "crew": {
+  "maya": {
+   "preflight_source": "Real pre-bed-rest DXA values of NASA MR035G participant 1392 (anonymized), used as this simulated crew member's pre-flight scan",
+   "ground": [
+    {
+     "day": -180,
+     "test": "DXA",
+     "lumbar_bmd": 0.9339
+    },
+    {
+     "day": -30,
+     "test": "DXA",
+     "lumbar_bmd": 0.9353
+    },
+    {
+     "day": -30,
+     "test": "urine",
+     "ntx": 36.5,
+     "calcium": 169
+    },
+    {
+     "day": -30,
+     "test": "blood",
+     "calcium": 9.4,
+     "bsap": 18.4,
+     "vitd": 35.2
+    }
+   ],
+   "flight": {
+    "ultrasound": [
+     {
+      "day": 30,
+      "lumbar_bmd_est": 0.9305,
+      "pct": -0.51
+     },
+     {
+      "day": 60,
+      "lumbar_bmd_est": 0.9294,
+      "pct": -0.63
+     },
+     {
+      "day": 90,
+      "lumbar_bmd_est": 0.9229,
+      "pct": -1.32
+     },
+     {
+      "day": 120,
+      "lumbar_bmd_est": 0.9196,
+      "pct": -1.68
+     },
+     {
+      "day": 150,
+      "lumbar_bmd_est": 0.9181,
+      "pct": -1.84
+     },
+     {
+      "day": 180,
+      "lumbar_bmd_est": 0.9136,
+      "pct": -2.32
+     }
+    ],
+    "urine": [
+     {
+      "day": 14,
+      "ntx": 50.2,
+      "calcium": 235
+     },
+     {
+      "day": 28,
+      "ntx": 50.7,
+      "calcium": 226
+     },
+     {
+      "day": 42,
+      "ntx": 47.5,
+      "calcium": 231
+     },
+     {
+      "day": 56,
+      "ntx": 52.9,
+      "calcium": 225
+     },
+     {
+      "day": 70,
+      "ntx": 52.6,
+      "calcium": 229
+     },
+     {
+      "day": 84,
+      "ntx": 44.7,
+      "calcium": 280
+     },
+     {
+      "day": 98,
+      "ntx": 54.4,
+      "calcium": 233
+     },
+     {
+      "day": 112,
+      "ntx": 60.7,
+      "calcium": 305
+     },
+     {
+      "day": 126,
+      "ntx": 77.8,
+      "calcium": 267
+     },
+     {
+      "day": 140,
+      "ntx": 58.2,
+      "calcium": 263
+     },
+     {
+      "day": 154,
+      "ntx": 63.7,
+      "calcium": 257
+     },
+     {
+      "day": 168,
+      "ntx": 59.4,
+      "calcium": 276
+     }
+    ],
+    "blood": [
+     {
+      "day": 30,
+      "calcium": 9.49,
+      "bsap": 17.1,
+      "vitd": 34.4
+     },
+     {
+      "day": 60,
+      "calcium": 9.39,
+      "bsap": 17.6,
+      "vitd": 35.2
+     },
+     {
+      "day": 90,
+      "calcium": 9.41,
+      "bsap": 17.1,
+      "vitd": 32.0
+     },
+     {
+      "day": 120,
+      "calcium": 9.52,
+      "bsap": 19.0,
+      "vitd": 31.3
+     },
+     {
+      "day": 150,
+      "calcium": 9.38,
+      "bsap": 16.9,
+      "vitd": 32.5
+     },
+     {
+      "day": 180,
+      "calcium": 9.56,
+      "bsap": 18.3,
+      "vitd": 31.3
+     }
+    ],
+    "weekly": [
+     {
+      "week": 1,
+      "day": 7,
+      "pain_avg": 4.0,
+      "pain_max": 5,
+      "hunched_days": 1,
+      "resist_min": 157
+     },
+     {
+      "week": 2,
+      "day": 14,
+      "pain_avg": 0.9,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 160
+     },
+     {
+      "week": 3,
+      "day": 21,
+      "pain_avg": 0.7,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 155
+     },
+     {
+      "week": 4,
+      "day": 28,
+      "pain_avg": 0.4,
+      "pain_max": 2,
+      "hunched_days": 1,
+      "resist_min": 156
+     },
+     {
+      "week": 5,
+      "day": 35,
+      "pain_avg": 0.3,
+      "pain_max": 1,
+      "hunched_days": 1,
+      "resist_min": 139
+     },
+     {
+      "week": 6,
+      "day": 42,
+      "pain_avg": 1.0,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 148
+     },
+     {
+      "week": 7,
+      "day": 49,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 1,
+      "resist_min": 161
+     },
+     {
+      "week": 8,
+      "day": 56,
+      "pain_avg": 0.7,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 131
+     },
+     {
+      "week": 9,
+      "day": 63,
+      "pain_avg": 0.7,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 154
+     },
+     {
+      "week": 10,
+      "day": 70,
+      "pain_avg": 0.7,
+      "pain_max": 2,
+      "hunched_days": 1,
+      "resist_min": 152
+     },
+     {
+      "week": 11,
+      "day": 77,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 149
+     },
+     {
+      "week": 12,
+      "day": 84,
+      "pain_avg": 0.9,
+      "pain_max": 2,
+      "hunched_days": 2,
+      "resist_min": 152
+     },
+     {
+      "week": 13,
+      "day": 91,
+      "pain_avg": 0.7,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 150
+     },
+     {
+      "week": 14,
+      "day": 98,
+      "pain_avg": 0.7,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 150
+     },
+     {
+      "week": 15,
+      "day": 105,
+      "pain_avg": 0.9,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 71
+     },
+     {
+      "week": 16,
+      "day": 112,
+      "pain_avg": 2.0,
+      "pain_max": 3,
+      "hunched_days": 2,
+      "resist_min": 70
+     },
+     {
+      "week": 17,
+      "day": 119,
+      "pain_avg": 3.0,
+      "pain_max": 4,
+      "hunched_days": 5,
+      "resist_min": 55
+     },
+     {
+      "week": 18,
+      "day": 126,
+      "pain_avg": 2.7,
+      "pain_max": 3,
+      "hunched_days": 0,
+      "resist_min": 76
+     },
+     {
+      "week": 19,
+      "day": 133,
+      "pain_avg": 2.7,
+      "pain_max": 3,
+      "hunched_days": 2,
+      "resist_min": 100
+     },
+     {
+      "week": 20,
+      "day": 140,
+      "pain_avg": 1.6,
+      "pain_max": 2,
+      "hunched_days": 1,
+      "resist_min": 111
+     },
+     {
+      "week": 21,
+      "day": 147,
+      "pain_avg": 1.6,
+      "pain_max": 3,
+      "hunched_days": 1,
+      "resist_min": 87
+     },
+     {
+      "week": 22,
+      "day": 154,
+      "pain_avg": 1.7,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 98
+     },
+     {
+      "week": 23,
+      "day": 161,
+      "pain_avg": 1.7,
+      "pain_max": 3,
+      "hunched_days": 0,
+      "resist_min": 80
+     },
+     {
+      "week": 24,
+      "day": 168,
+      "pain_avg": 2.3,
+      "pain_max": 3,
+      "hunched_days": 2,
+      "resist_min": 78
+     },
+     {
+      "week": 25,
+      "day": 175,
+      "pain_avg": 1.7,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 103
+     }
+    ],
+    "true_pct_by_day": {
+     "5": -0.05,
+     "10": -0.1,
+     "15": -0.15,
+     "20": -0.2,
+     "25": -0.25,
+     "30": -0.3,
+     "35": -0.358,
+     "40": -0.412,
+     "45": -0.463,
+     "50": -0.514,
+     "55": -0.574,
+     "60": -0.632,
+     "65": -0.682,
+     "70": -0.732,
+     "75": -0.782,
+     "80": -0.834,
+     "85": -0.885,
+     "90": -0.937,
+     "95": -0.99,
+     "100": -1.043,
+     "105": -1.139,
+     "110": -1.259,
+     "115": -1.37,
+     "120": -1.49,
+     "125": -1.603,
+     "130": -1.702,
+     "135": -1.791,
+     "140": -1.877,
+     "145": -1.969,
+     "150": -2.063,
+     "155": -2.155,
+     "160": -2.26,
+     "165": -2.365,
+     "170": -2.468,
+     "175": -2.557,
+     "180": -2.658
+    }
+   },
+   "baseline": {
+    "lumbar_bmd": 0.9353,
+    "ntx": 36.5,
+    "urine_calcium": 169,
+    "bsap": 18.4,
+    "vitd": 35.2
+   }
+  },
+  "leo": {
+   "preflight_source": "Real pre-bed-rest DXA values of NASA MR035G participant 4011 (anonymized), used as this simulated crew member's pre-flight scan",
+   "ground": [
+    {
+     "day": -180,
+     "test": "DXA",
+     "lumbar_bmd": 1.2115
+    },
+    {
+     "day": -30,
+     "test": "DXA",
+     "lumbar_bmd": 1.1933
+    },
+    {
+     "day": -30,
+     "test": "urine",
+     "ntx": 39.7,
+     "calcium": 193
+    },
+    {
+     "day": -30,
+     "test": "blood",
+     "calcium": 9.4,
+     "bsap": 21.3,
+     "vitd": 33.5
+    }
+   ],
+   "flight": {
+    "ultrasound": [
+     {
+      "day": 30,
+      "lumbar_bmd_est": 1.1967,
+      "pct": 0.29
+     },
+     {
+      "day": 60,
+      "lumbar_bmd_est": 1.1858,
+      "pct": -0.63
+     },
+     {
+      "day": 90,
+      "lumbar_bmd_est": 1.185,
+      "pct": -0.7
+     },
+     {
+      "day": 120,
+      "lumbar_bmd_est": 1.1823,
+      "pct": -0.92
+     },
+     {
+      "day": 150,
+      "lumbar_bmd_est": 1.1782,
+      "pct": -1.26
+     },
+     {
+      "day": 180,
+      "lumbar_bmd_est": 1.1717,
+      "pct": -1.81
+     }
+    ],
+    "urine": [
+     {
+      "day": 14,
+      "ntx": 57.2,
+      "calcium": 271
+     },
+     {
+      "day": 28,
+      "ntx": 57.6,
+      "calcium": 267
+     },
+     {
+      "day": 42,
+      "ntx": 56.3,
+      "calcium": 273
+     },
+     {
+      "day": 56,
+      "ntx": 68.7,
+      "calcium": 269
+     },
+     {
+      "day": 70,
+      "ntx": 59.0,
+      "calcium": 232
+     },
+     {
+      "day": 84,
+      "ntx": 56.1,
+      "calcium": 279
+     },
+     {
+      "day": 98,
+      "ntx": 58.4,
+      "calcium": 258
+     },
+     {
+      "day": 112,
+      "ntx": 58.9,
+      "calcium": 266
+     },
+     {
+      "day": 126,
+      "ntx": 57.4,
+      "calcium": 258
+     },
+     {
+      "day": 140,
+      "ntx": 62.4,
+      "calcium": 315
+     },
+     {
+      "day": 154,
+      "ntx": 55.4,
+      "calcium": 287
+     },
+     {
+      "day": 168,
+      "ntx": 54.7,
+      "calcium": 269
+     }
+    ],
+    "blood": [
+     {
+      "day": 30,
+      "calcium": 9.46,
+      "bsap": 20.2,
+      "vitd": 33.4
+     },
+     {
+      "day": 60,
+      "calcium": 9.4,
+      "bsap": 20.2,
+      "vitd": 30.0
+     },
+     {
+      "day": 90,
+      "calcium": 9.43,
+      "bsap": 20.2,
+      "vitd": 33.3
+     },
+     {
+      "day": 120,
+      "calcium": 9.4,
+      "bsap": 17.6,
+      "vitd": 31.8
+     },
+     {
+      "day": 150,
+      "calcium": 9.42,
+      "bsap": 18.7,
+      "vitd": 32.9
+     },
+     {
+      "day": 180,
+      "calcium": 9.41,
+      "bsap": 19.3,
+      "vitd": 29.6
+     }
+    ],
+    "weekly": [
+     {
+      "week": 1,
+      "day": 7,
+      "pain_avg": 4.0,
+      "pain_max": 5,
+      "hunched_days": 2,
+      "resist_min": 151
+     },
+     {
+      "week": 2,
+      "day": 14,
+      "pain_avg": 1.1,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 146
+     },
+     {
+      "week": 3,
+      "day": 21,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 163
+     },
+     {
+      "week": 4,
+      "day": 28,
+      "pain_avg": 0.4,
+      "pain_max": 1,
+      "hunched_days": 1,
+      "resist_min": 138
+     },
+     {
+      "week": 5,
+      "day": 35,
+      "pain_avg": 0.7,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 157
+     },
+     {
+      "week": 6,
+      "day": 42,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 1,
+      "resist_min": 152
+     },
+     {
+      "week": 7,
+      "day": 49,
+      "pain_avg": 0.7,
+      "pain_max": 2,
+      "hunched_days": 1,
+      "resist_min": 120
+     },
+     {
+      "week": 8,
+      "day": 56,
+      "pain_avg": 1.0,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 161
+     },
+     {
+      "week": 9,
+      "day": 63,
+      "pain_avg": 1.0,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 159
+     },
+     {
+      "week": 10,
+      "day": 70,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 151
+     },
+     {
+      "week": 11,
+      "day": 77,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 159
+     },
+     {
+      "week": 12,
+      "day": 84,
+      "pain_avg": 0.7,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 159
+     },
+     {
+      "week": 13,
+      "day": 91,
+      "pain_avg": 1.1,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 144
+     },
+     {
+      "week": 14,
+      "day": 98,
+      "pain_avg": 0.4,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 149
+     },
+     {
+      "week": 15,
+      "day": 105,
+      "pain_avg": 1.1,
+      "pain_max": 2,
+      "hunched_days": 1,
+      "resist_min": 149
+     },
+     {
+      "week": 16,
+      "day": 112,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 1,
+      "resist_min": 158
+     },
+     {
+      "week": 17,
+      "day": 119,
+      "pain_avg": 0.4,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 159
+     },
+     {
+      "week": 18,
+      "day": 126,
+      "pain_avg": 0.7,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 140
+     },
+     {
+      "week": 19,
+      "day": 133,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 146
+     },
+     {
+      "week": 20,
+      "day": 140,
+      "pain_avg": 0.9,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 141
+     },
+     {
+      "week": 21,
+      "day": 147,
+      "pain_avg": 1.1,
+      "pain_max": 2,
+      "hunched_days": 1,
+      "resist_min": 146
+     },
+     {
+      "week": 22,
+      "day": 154,
+      "pain_avg": 0.9,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 139
+     },
+     {
+      "week": 23,
+      "day": 161,
+      "pain_avg": 0.9,
+      "pain_max": 1,
+      "hunched_days": 1,
+      "resist_min": 137
+     },
+     {
+      "week": 24,
+      "day": 168,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 1,
+      "resist_min": 170
+     },
+     {
+      "week": 25,
+      "day": 175,
+      "pain_avg": 0.7,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 153
+     }
+    ],
+    "true_pct_by_day": {
+     "5": -0.05,
+     "10": -0.101,
+     "15": -0.153,
+     "20": -0.203,
+     "25": -0.254,
+     "30": -0.313,
+     "35": -0.364,
+     "40": -0.414,
+     "45": -0.468,
+     "50": -0.538,
+     "55": -0.594,
+     "60": -0.644,
+     "65": -0.694,
+     "70": -0.744,
+     "75": -0.795,
+     "80": -0.845,
+     "85": -0.895,
+     "90": -0.948,
+     "95": -1.001,
+     "100": -1.055,
+     "105": -1.107,
+     "110": -1.157,
+     "115": -1.207,
+     "120": -1.257,
+     "125": -1.311,
+     "130": -1.364,
+     "135": -1.42,
+     "140": -1.475,
+     "145": -1.53,
+     "150": -1.586,
+     "155": -1.645,
+     "160": -1.701,
+     "165": -1.755,
+     "170": -1.805,
+     "175": -1.855,
+     "180": -1.908
+    }
+   },
+   "baseline": {
+    "lumbar_bmd": 1.1933,
+    "ntx": 39.7,
+    "urine_calcium": 193,
+    "bsap": 21.3,
+    "vitd": 33.5
+   }
+  },
+  "sam": {
+   "preflight_source": "Real pre-bed-rest DXA values of NASA MR035G participant 5695 (anonymized), used as this simulated crew member's pre-flight scan",
+   "ground": [
+    {
+     "day": -180,
+     "test": "DXA",
+     "lumbar_bmd": 0.9215
+    },
+    {
+     "day": -30,
+     "test": "DXA",
+     "lumbar_bmd": 0.9103
+    },
+    {
+     "day": -30,
+     "test": "urine",
+     "ntx": 39.9,
+     "calcium": 175
+    },
+    {
+     "day": -30,
+     "test": "blood",
+     "calcium": 9.4,
+     "bsap": 19.6,
+     "vitd": 32.5
+    }
+   ],
+   "flight": {
+    "ultrasound": [
+     {
+      "day": 30,
+      "lumbar_bmd_est": 0.9079,
+      "pct": -0.26
+     },
+     {
+      "day": 60,
+      "lumbar_bmd_est": 0.91,
+      "pct": -0.03
+     },
+     {
+      "day": 90,
+      "lumbar_bmd_est": 0.907,
+      "pct": -0.36
+     },
+     {
+      "day": 120,
+      "lumbar_bmd_est": 0.9,
+      "pct": -1.13
+     },
+     {
+      "day": 150,
+      "lumbar_bmd_est": 0.9003,
+      "pct": -1.1
+     },
+     {
+      "day": 180,
+      "lumbar_bmd_est": 0.8882,
+      "pct": -2.43
+     }
+    ],
+    "urine": [
+     {
+      "day": 14,
+      "ntx": 57.9,
+      "calcium": 230
+     },
+     {
+      "day": 28,
+      "ntx": 57.7,
+      "calcium": 225
+     },
+     {
+      "day": 42,
+      "ntx": 64.0,
+      "calcium": 230
+     },
+     {
+      "day": 56,
+      "ntx": 56.5,
+      "calcium": 221
+     },
+     {
+      "day": 70,
+      "ntx": 61.8,
+      "calcium": 218
+     },
+     {
+      "day": 84,
+      "ntx": 64.2,
+      "calcium": 222
+     },
+     {
+      "day": 98,
+      "ntx": 56.9,
+      "calcium": 233
+     },
+     {
+      "day": 112,
+      "ntx": 52.7,
+      "calcium": 232
+     },
+     {
+      "day": 126,
+      "ntx": 53.8,
+      "calcium": 268
+     },
+     {
+      "day": 140,
+      "ntx": 66.0,
+      "calcium": 250
+     },
+     {
+      "day": 154,
+      "ntx": 67.0,
+      "calcium": 233
+     },
+     {
+      "day": 168,
+      "ntx": 60.5,
+      "calcium": 241
+     }
+    ],
+    "blood": [
+     {
+      "day": 30,
+      "calcium": 9.38,
+      "bsap": 18.1,
+      "vitd": 31.6
+     },
+     {
+      "day": 60,
+      "calcium": 9.27,
+      "bsap": 19.7,
+      "vitd": 31.7
+     },
+     {
+      "day": 90,
+      "calcium": 9.5,
+      "bsap": 19.0,
+      "vitd": 30.7
+     },
+     {
+      "day": 120,
+      "calcium": 9.42,
+      "bsap": 19.9,
+      "vitd": 29.4
+     },
+     {
+      "day": 150,
+      "calcium": 9.44,
+      "bsap": 17.5,
+      "vitd": 29.3
+     },
+     {
+      "day": 180,
+      "calcium": 9.43,
+      "bsap": 18.9,
+      "vitd": 28.9
+     }
+    ],
+    "weekly": [
+     {
+      "week": 1,
+      "day": 7,
+      "pain_avg": 3.6,
+      "pain_max": 5,
+      "hunched_days": 0,
+      "resist_min": 154
+     },
+     {
+      "week": 2,
+      "day": 14,
+      "pain_avg": 1.1,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 144
+     },
+     {
+      "week": 3,
+      "day": 21,
+      "pain_avg": 0.7,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 135
+     },
+     {
+      "week": 4,
+      "day": 28,
+      "pain_avg": 0.7,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 167
+     },
+     {
+      "week": 5,
+      "day": 35,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 164
+     },
+     {
+      "week": 6,
+      "day": 42,
+      "pain_avg": 0.4,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 164
+     },
+     {
+      "week": 7,
+      "day": 49,
+      "pain_avg": 1.0,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 158
+     },
+     {
+      "week": 8,
+      "day": 56,
+      "pain_avg": 1.0,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 164
+     },
+     {
+      "week": 9,
+      "day": 63,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 157
+     },
+     {
+      "week": 10,
+      "day": 70,
+      "pain_avg": 0.7,
+      "pain_max": 2,
+      "hunched_days": 1,
+      "resist_min": 159
+     },
+     {
+      "week": 11,
+      "day": 77,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 141
+     },
+     {
+      "week": 12,
+      "day": 84,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 125
+     },
+     {
+      "week": 13,
+      "day": 91,
+      "pain_avg": 1.0,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 139
+     },
+     {
+      "week": 14,
+      "day": 98,
+      "pain_avg": 0.9,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 149
+     },
+     {
+      "week": 15,
+      "day": 105,
+      "pain_avg": 0.4,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 158
+     },
+     {
+      "week": 16,
+      "day": 112,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 144
+     },
+     {
+      "week": 17,
+      "day": 119,
+      "pain_avg": 0.7,
+      "pain_max": 1,
+      "hunched_days": 2,
+      "resist_min": 154
+     },
+     {
+      "week": 18,
+      "day": 126,
+      "pain_avg": 0.6,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 166
+     },
+     {
+      "week": 19,
+      "day": 133,
+      "pain_avg": 0.7,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 165
+     },
+     {
+      "week": 20,
+      "day": 140,
+      "pain_avg": 0.9,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 150
+     },
+     {
+      "week": 21,
+      "day": 147,
+      "pain_avg": 0.9,
+      "pain_max": 1,
+      "hunched_days": 1,
+      "resist_min": 129
+     },
+     {
+      "week": 22,
+      "day": 154,
+      "pain_avg": 1.0,
+      "pain_max": 2,
+      "hunched_days": 1,
+      "resist_min": 152
+     },
+     {
+      "week": 23,
+      "day": 161,
+      "pain_avg": 0.6,
+      "pain_max": 2,
+      "hunched_days": 0,
+      "resist_min": 129
+     },
+     {
+      "week": 24,
+      "day": 168,
+      "pain_avg": 0.9,
+      "pain_max": 2,
+      "hunched_days": 1,
+      "resist_min": 159
+     },
+     {
+      "week": 25,
+      "day": 175,
+      "pain_avg": 0.3,
+      "pain_max": 1,
+      "hunched_days": 0,
+      "resist_min": 152
+     }
+    ],
+    "true_pct_by_day": {
+     "5": -0.05,
+     "10": -0.105,
+     "15": -0.163,
+     "20": -0.218,
+     "25": -0.273,
+     "30": -0.323,
+     "35": -0.373,
+     "40": -0.423,
+     "45": -0.473,
+     "50": -0.523,
+     "55": -0.573,
+     "60": -0.623,
+     "65": -0.673,
+     "70": -0.723,
+     "75": -0.776,
+     "80": -0.839,
+     "85": -0.907,
+     "90": -0.968,
+     "95": -1.022,
+     "100": -1.073,
+     "105": -1.123,
+     "110": -1.176,
+     "115": -1.231,
+     "120": -1.281,
+     "125": -1.331,
+     "130": -1.381,
+     "135": -1.431,
+     "140": -1.481,
+     "145": -1.544,
+     "150": -1.606,
+     "155": -1.656,
+     "160": -1.718,
+     "165": -1.774,
+     "170": -1.824,
+     "175": -1.874,
+     "180": -1.927
+    }
+   },
+   "baseline": {
+    "lumbar_bmd": 0.9103,
+    "ntx": 39.9,
+    "urine_calcium": 175,
+    "bsap": 19.6,
+    "vitd": 32.5
+   }
+  }
+ }
+}

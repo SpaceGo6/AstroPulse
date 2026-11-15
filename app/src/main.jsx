@@ -12,6 +12,7 @@ import Forecast from './pages/Forecast.jsx';
 import BodyMap from './pages/BodyMap.jsx';
 import Alert from './pages/Alert.jsx';
 import Audit from './pages/Audit.jsx';
+import Spine from './pages/Spine.jsx';
 
 // HashRouter: works from any static host or straight from disk, no server routing needed.
 createRoot(document.getElementById('root')).render(
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="checkin" element={<CheckIn />} />
             <Route path="remeasure" element={<Remeasure />} />
             <Route path="trends/:id" element={<Trends />} />
+            <Route path="spine" element={<Spine />} />
             <Route path="forecast" element={<Forecast />} />
             <Route path="body" element={<BodyMap />} />
             <Route path="audit" element={<Audit />} />

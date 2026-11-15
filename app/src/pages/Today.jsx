@@ -66,7 +66,7 @@ export default function Today() {
       <section aria-label="Health indicators" className="grid-4">
         {INDICATORS.map((ind, i) => {
           const s = statuses[ind.id];
-          const to = ind.id === 'bone' || ind.id === 'radiation' ? '/forecast' : `/trends/${ind.id}`;
+          const to = ind.id === 'bone' ? '/spine' : ind.id === 'radiation' ? '/forecast' : `/trends/${ind.id}`;
           return (
             <Link key={ind.id} to={to} className={`card is-${s.status}`} style={{ animationDelay: `${0.15 + i * 0.07}s` }}>
               <div className="row between"><span className="muted" style={{ fontWeight: 600 }}>{ind.label}</span><StatusChip status={s.status} /></div>
