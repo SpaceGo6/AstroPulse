@@ -52,7 +52,7 @@ export default function Alert() {
         <div className="row gap16">
           {firing
             ? <div style={{ width: 56, height: 56, borderRadius: 16, background: 'var(--bad)', color: '#1A0805', display: 'grid', placeItems: 'center', animation: 'blink 1.2s ease-in-out infinite' }}><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 2l10 10-10 10L2 12z" /><path d="M12 8v5M12 16h.01" /></svg></div>
-            : <Link to="/" className="icon-btn" aria-label="Back to Today"><Icon name="back" /></Link>}
+            : <Link to="/" className="icon-btn" aria-label="Back to home"><Icon name="back" /></Link>}
           <div className="col gap4">
             <span className="eyebrow" style={{ color: firing ? '#FFB4A3' : 'var(--ok)' }}>{firing ? 'Red Alert · Triage Mode' : 'Watchdog · monitoring live feed'}</span>
             <h1 className="h1">{firing ? `${patient.name}: ${scenario.title.toLowerCase()}` : `${patient.name} · ${patient.role}`}</h1>

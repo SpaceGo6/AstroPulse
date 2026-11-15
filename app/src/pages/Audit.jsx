@@ -31,6 +31,7 @@ function describe(e) {
     case 'REPORT_QUEUED': return `For ${d.patient}, sends at next downlink`;
     case 'ALERT_EXITED': return `${d.patient}: ${d.steps_done} steps done`;
     case 'SPINE_SYMPTOM': return `Back pain ${d.pain}/10 (${d.where})${d.hunched ? ', hunched posture' : ''}`;
+    case 'LABS_ENTERED': return Object.entries(d).map(([k, v]) => `${{ ctx: 'CTX', p1np: 'P1NP', ntx: 'urine NTx', urine_calcium: 'urine calcium' }[k] || k} ${v}`).join(' · ');
     case 'IMAGING_ADDED': return `${d.test}: spine ${d.lumbar_bmd} g/cm² (${d.pct}% vs pre-flight)${d.status ? ` · ${d.status}` : ''}`;
     case 'ULTRASOUND_ANALYZED': return d.estimate != null ? `Image ${d.image}: simulated AI estimate ${d.estimate} g/cm² (concept demo)` : `Image ${d.image}: ${String(d.result).replace(/_/g, ' ')}`;
     case 'GROUND_NOTES_SAVED': return `Notes for the day ${d.report_day} report (${d.chars} characters)`;

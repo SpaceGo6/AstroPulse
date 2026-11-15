@@ -1,7 +1,7 @@
 // Real, local image checks for an uploaded ultrasound picture (runs in the browser, offline).
 // Shrinks the image to ≤640 px, then measures the scan area only (near-black border ignored):
 //   brightness = mean gray level, contrast = spread of gray levels, sharpness = mean edge strength.
-// The backend decides what counts as too dark / blurry; these are just the measurements.
+// The analyzer decides what counts as too dark or blurry; these are just the measurements.
 import { sha256 } from '../audit/sha256.js';
 
 function loadImage(src) {

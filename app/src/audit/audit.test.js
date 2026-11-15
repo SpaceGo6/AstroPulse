@@ -12,8 +12,8 @@ describe('sha256', () => {
 describe('audit chain', () => {
   const build = () => {
     let c = [];
-    c = [...c, makeEntry(c, { missionDay: 140, crewId: 'maya', actor: 'Maya', type: 'READING_SAVED', detail: { bp: '148/95' } })];
-    c = [...c, makeEntry(c, { missionDay: 140, crewId: 'maya', actor: 'Engine', type: 'ENGINE_DECISION', detail: { bp: 'watch' } })];
+    c = [...c, makeEntry(c, { missionDay: 140, crewId: 'chris', actor: 'Chris', type: 'READING_SAVED', detail: { bp: '148/95' } })];
+    c = [...c, makeEntry(c, { missionDay: 140, crewId: 'chris', actor: 'Engine', type: 'ENGINE_DECISION', detail: { bp: 'watch' } })];
     c = [...c, makeEntry(c, { missionDay: 152, crewId: 'leo', actor: 'Watchdog', type: 'WATCHDOG_ALERT', detail: { minute: 75 } })];
     return c;
   };

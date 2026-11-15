@@ -91,7 +91,7 @@
   "ultrasound_precision_pct": 0.4
  },
  "crew": {
-  "maya": {
+  "chris": {
    "preflight_source": "Real pre-bed-rest DXA values of NASA MR035G participant 1392 (anonymized), used as this simulated crew member's pre-flight scan",
    "ground": [
     {

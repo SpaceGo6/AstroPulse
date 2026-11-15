@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 import express from "express";
 import cors from "cors";
 import mockRoutes from "./mockApi/routes.js";
@@ -11,9 +12,9 @@ import { analyzeBoneHealth } from "./analysis/analyzeBoneHealth.js";
 const app = express();
 const port = Number(process.env.PORT) || 3001;
 
-// Frontend origins allowed to call the API. Override with CORS_ORIGINS="http://host:port,http://other:port".
+// Frontend origins allowed to call the API. Override with CORS_ORIGINS="https://host,https://other".
 const allowedOrigins = (process.env.CORS_ORIGINS ??
-  "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,http://localhost:3000")
+  "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,http://localhost:3000,https://astropulse-b5b55.web.app,https://astropulse-b5b55.firebaseapp.com")
   .split(",").map((o) => o.trim()).filter(Boolean);
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
@@ -60,4 +61,10 @@ app.get("/api/astronauts/:astronautId/bone-health", (req, res) => {
   }));
 });
 
-app.listen(port, () => console.log(`AstroPulse API running at http://localhost:${port}`));
+// Vercel imports this file and serves the exported app. Listen only when run directly (`npm run dev`).
+export default app;
+
+const entry = process.argv[1] ? pathToFileURL(process.argv[1]).href : "";
+if (import.meta.url === entry) {
+  app.listen(port, () => console.log(`AstroPulse API running at http://localhost:${port}`));
+}

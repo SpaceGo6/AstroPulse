@@ -1,6 +1,6 @@
-// Bone markers from the AstroPulse backend: serum CTX, serum P1NP and 24-hour urinary calcium.
-// Display only. Every number here (baseline, latest, % change, slope, gaps, observations) is
-// computed by the backend; this component formats it and never adds thresholds or risk.
+// Bone markers from the on-board prototype snapshot: serum CTX, serum P1NP and 24-hour urinary calcium.
+// Display only. Every number here (baseline, latest, % change, slope, gaps, observations) comes
+// from that snapshot; this component formats it and never adds thresholds or risk.
 import { LineChart, Line, XAxis, YAxis, ReferenceLine, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { Icon } from './ui.jsx';
 import { API_BASE_URL } from '../api/config.js';
@@ -89,7 +89,7 @@ export default function BoneMarkersPanel({ state, crewName }) {
     <div className="row between wrap gap8">
       <div className="col gap4">
         <h2 className="h2">Bone markers</h2>
-        <span className="muted">From the AstroPulse backend{astronautId ? ` · record ${astronautId}` : ''}{data?.latestMissionDay != null ? ` · latest mission day ${data.latestMissionDay}` : ''}</span>
+        <span className="muted">Prototype data in the app{data?.latestMissionDay != null ? ` · latest mission day ${data.latestMissionDay}` : ''}</span>
       </div>
       <div className="row gap8 wrap">
         {data?.dataSource && <Chip tone={data.dataSource === 'simulated' ? 'sim' : 'muted'}>{data.dataSource === 'simulated' ? 'Simulated data' : `Source: ${words(data.dataSource)}`}</Chip>}
@@ -150,7 +150,7 @@ export default function BoneMarkersPanel({ state, crewName }) {
 
       <div className="split" style={{ '--cols': '1fr 1fr' }}>
         <div className="col gap12">
-          <span className="eyebrow">Symptoms and exercise (backend summary)</span>
+          <span className="eyebrow">Symptoms and exercise (prototype summary)</span>
           <div className="table-wrap">
             <table className="data-table">
               <tbody>

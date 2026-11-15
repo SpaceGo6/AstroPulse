@@ -1,6 +1,6 @@
 // Stand-in for the onboard hub: BroadcastChannel lets two tabs of the app on the
 // same machine message each other with no network at all. Open the app in two
-// tabs (Maya's tablet + the crew medical officer) to demo crew sync.
+// tabs (Chris's tablet + the crew medical officer) to demo crew sync.
 const NAME = 'astropulse-crew';
 
 export function sendCrewMessage(msg) {

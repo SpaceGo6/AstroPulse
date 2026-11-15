@@ -13,7 +13,17 @@ import UltrasoundAnalyzer from '../components/UltrasoundAnalyzer.jsx';
 import { useBoneHealth } from '../api/useBoneHealth.js';
 
 const KEY = (id) => `astropulse.spine.${id}`;
-const EMPTY = { reports: [], scans: [], downlinks: [], imaging: [] };
+const EMPTY = { reports: [], scans: [], downlinks: [], imaging: [], labs: [] };
+
+// Bone biomarkers the crew enters from the on-board analyzer. The ranges only catch typos and
+// unit mix-ups; they are not clinical limits, and none of these is a direct spine density measurement.
+const LAB_FIELDS = [
+  { id: 'ctx', label: 'CTX', sample: 'Blood', unit: 'ng/mL', shows: 'bone breakdown', min: 0.01, max: 5, ph: 'e.g. 0.45' },
+  { id: 'p1np', label: 'P1NP', sample: 'Blood', unit: 'ng/mL', shows: 'bone building', min: 1, max: 500, ph: 'e.g. 55' },
+  { id: 'ntx', label: 'NTx', sample: 'Urine', unit: 'nmol BCE/mmol Cr', shows: 'bone breakdown', min: 1, max: 300, ph: 'e.g. 45' },
+  { id: 'urine_calcium', label: 'Calcium', sample: 'Urine', unit: 'mg/day', shows: 'calcium leaving the body', min: 10, max: 1000, ph: 'e.g. 210' },
+];
+const EMPTY_LAB = { ctx: '', p1np: '', ntx: '', urine_calcium: '' };
 const read = (k) => { try { return { ...EMPTY, ...(JSON.parse(localStorage.getItem(k)) ?? {}) }; } catch { return { ...EMPTY }; } };
 
 // Shrink an uploaded image so it fits in on-board storage (longest side 640 px, JPEG).
@@ -60,16 +70,21 @@ export default function Spine() {
   const [storeError, setStoreError] = useState('');
   const save = (next) => { setStore(next); try { localStorage.setItem(KEY(crew.id), JSON.stringify(next)); setStoreError(''); } catch { setStoreError('On-board storage is full: this item is kept until you reload. Remove old images to make room.'); } };
 
-  const boneHealth = useBoneHealth(crew.id); // lab markers from the AstroPulse backend
+  const boneHealth = useBoneHealth(crew.id); // lab markers from the on-board prototype snapshot
   const base = spine.crew[crew.id];
   const pre = base.baseline.lumbar_bmd;
   // scans entered on this tablet join the in-flight ultrasound series
   const confirmedScans = store.scans.filter((s) => !s.pending);
   const pending = store.scans.find((s) => s.pending && s.day === today);
+  // a urine sample entered on board (NTx + calcium) joins the urine series used by the bone signals
+  const labUrine = [...new Map(store.labs.filter((l) => l.ntx != null && l.urine_calcium != null)
+    .map((l) => [l.day, { day: l.day, ntx: l.ntx, calcium: l.urine_calcium, entered: true }])).values()];
   const crewSpine = useMemo(() => ({
     ...base,
-    flight: { ...base.flight, ultrasound: [...base.flight.ultrasound.filter((u) => !confirmedScans.some((s) => s.day === u.day)), ...confirmedScans].sort((a, b) => a.day - b.day) },
-  }), [base, confirmedScans]); // eslint-disable-line react-hooks/exhaustive-deps
+    flight: { ...base.flight,
+      ultrasound: [...base.flight.ultrasound.filter((u) => !confirmedScans.some((s) => s.day === u.day)), ...confirmedScans].sort((a, b) => a.day - b.day),
+      urine: [...base.flight.urine.filter((u) => !labUrine.some((l) => l.day === u.day)), ...labUrine].sort((a, b) => a.day - b.day) },
+  }), [base, confirmedScans, labUrine]); // eslint-disable-line react-hooks/exhaustive-deps
   const landing = spine.landing_day;
   const f = spineForecast(rows, crewSpine, spine.model, today, landing);
   const ph = spinePhases(crewSpine, f, spine.model, today);
@@ -113,6 +128,31 @@ export default function Spine() {
     save({ ...store, reports: [...store.reports, r] });
     log('SPINE_SYMPTOM', { pain, where, hunched });
   };
+  // bone biomarkers from the on-board analyzer
+  const [lab, setLab] = useState(EMPTY_LAB);
+  const [labError, setLabError] = useState('');
+  const addLabs = (e) => {
+    e.preventDefault();
+    setLabError('');
+    const entry = { id: `${today}-${Date.now()}`, day: today, at: new Date().toISOString() };
+    for (const fd of LAB_FIELDS) {
+      const raw = lab[fd.id].trim().replace(',', '.');
+      if (!raw) continue;
+      const v = Number(raw);
+      if (!Number.isFinite(v) || v < fd.min || v > fd.max) {
+        setLabError(`${fd.sample} ${fd.label}: enter a number between ${fd.min} and ${fd.max} ${fd.unit}. Check the units on the analyzer.`);
+        return;
+      }
+      entry[fd.id] = v;
+    }
+    const given = LAB_FIELDS.filter((fd) => entry[fd.id] != null);
+    if (!given.length) { setLabError('Enter at least one result.'); return; }
+    if ((entry.ntx != null) !== (entry.urine_calcium != null)) { setLabError('Urine sample: enter both NTx and calcium from the same sample.'); return; }
+    save({ ...store, labs: [...store.labs, entry] });
+    log('LABS_ENTERED', Object.fromEntries(given.map((fd) => [fd.id, entry[fd.id]])));
+    setLab(EMPTY_LAB);
+  };
+  const todaysLabs = store.labs.filter((l) => l.day === today).length;
   // imaging result
   const [test, setTest] = useState('Ultrasound');
   const [bmd, setBmd] = useState('');
@@ -159,7 +199,10 @@ export default function Spine() {
   const sentIds = new Set(store.downlinks.flatMap((d) => d.imagingIds || []));
   const unsent = store.imaging.filter((m) => !sentIds.has(m.id));
   const send = () => {
-    const packet = downlinkPacket({ crew, today, phases: ph, forecast: f, alerts, crewSpine, reports: store.reports.filter((r) => r.day > today - 7), signals, imaging: unsent });
+    const packet = {
+      ...downlinkPacket({ crew, today, phases: ph, forecast: f, alerts, crewSpine, reports: store.reports.filter((r) => r.day > today - 7), signals, imaging: unsent }),
+      biomarkers_entered: store.labs.filter((l) => l.day > today - 30).map(({ id, at, ...v }) => v), // eslint-disable-line no-unused-vars
+    };
     const hash = sha256(canonical(packet)).slice(0, 16);
     save({ ...store, downlinks: [...store.downlinks, { id: `${today}-${Date.now()}`, day: today, hash, at: new Date().toISOString(), packet, imagingIds: unsent.map((m) => m.id), notes: [] }] });
     log('SPINE_DOWNLINK', { alerts: alerts.length, packet_hash: hash });
@@ -192,7 +235,7 @@ export default function Spine() {
 
   return (
     <>
-      <PageHeader title="Spine bone health" subtitle={`${crew.name} · lumbar spine (L1–L4) · mission day ${today} of ${landing}`}
+      <PageHeader back={null} title={`Bone health · ${firstName}`} subtitle={`${crew.name} · lumbar spine (L1–L4) · mission day ${today} of ${landing}`}
         right={<div className="row gap8 wrap"><StatusChip status={overall} big label={overall === 'normal' ? 'On track' : overall === 'act' ? 'Act now' : `${alerts.length} to watch`} />
           <button type="button" className="btn btn-primary" onClick={send}><Icon name="send" />{queued ? 'Send update' : 'Send to ground doctors'}</button></div>} />
 
@@ -206,6 +249,43 @@ export default function Spine() {
           {' '}Your ground doctors see the same numbers.
         </p>
         {queued && <span className="row gap8" style={{ fontSize: 13, color: 'var(--ok)' }}><Icon name="check" size={16} />Report queued for the next comm window · hash {queued.hash} <button type="button" className="tab" style={{ minHeight: 34 }} onClick={download}><Icon name="download" size={16} />Packet</button></span>}
+      </section>
+
+      <section className="split" style={{ '--cols': '1.7fr 1fr' }} aria-label="Report today">
+        <form className="panel col gap12" aria-label="Enter bone biomarkers" onSubmit={addLabs}>
+          <div className="row between wrap gap8"><h2 className="h2">Enter bone biomarkers</h2><span className="muted">Sample from mission day {today}</span></div>
+          <div className="row gap20 wrap" style={{ alignItems: 'flex-end' }}>
+            {['Blood', 'Urine'].map((sample) => (
+              <div key={sample} className="col gap8 grow" style={{ minWidth: 280 }}>
+                <span className="eyebrow">{sample} sample{sample === 'Urine' ? ' (both from the same sample)' : ''}</span>
+                <div className="row gap12 wrap">
+                  {LAB_FIELDS.filter((fd) => fd.sample === sample).map((fd) => (
+                    <label key={fd.id} className="col gap4 grow" style={{ minWidth: 130 }}>
+                      <span className="muted">{fd.label} · {fd.shows} <span className="faint">({fd.unit})</span></span>
+                      <input className="field" inputMode="decimal" placeholder={fd.ph} value={lab[fd.id]} onChange={(e) => setLab({ ...lab, [fd.id]: e.target.value })} />
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))}
+            <button type="submit" className="btn btn-primary" style={{ flex: 'none' }}>Save results</button>
+          </div>
+          {labError && <span role="alert" style={{ color: 'var(--warn)', fontSize: 14 }}>{labError}</span>}
+          {todaysLabs > 0 && <span className="faint">{todaysLabs} result set(s) saved today · in the audit trail and the next report</span>}
+          <span className="faint">CTX, P1NP and urine markers are not direct spine density measurements. AstroPulse reads them together with scans, exercise and back pain; the urine sample also updates the bone signals. The ground doctors see every value.</span>
+        </form>
+        <div className="panel col gap12" aria-label="Report back pain">
+          <h2 className="h2">Report back pain or posture</h2>
+          <div className="row gap12 wrap">
+            <label className="col gap4 grow" style={{ minWidth: 160 }}><span className="muted">Pain now: <strong style={{ color: pain >= 7 ? 'var(--bad-text)' : 'var(--text)' }}>{pain}/10</strong></span>
+              <input className="slider" type="range" min={0} max={10} value={pain} onChange={(e) => setPain(Number(e.target.value))} /></label>
+            <label className="col gap4"><span className="muted">Where</span>
+              <select className="field" value={where} onChange={(e) => setWhere(e.target.value)}>{['low back', 'mid back', 'neck', 'leg (spreading)'].map((w) => <option key={w}>{w}</option>)}</select></label>
+          </div>
+          <label className="row gap8" style={{ fontSize: 14 }}><input type="checkbox" checked={hunched} onChange={(e) => setHunched(e.target.checked)} style={{ width: 20, height: 20 }} />Hunched / stooped posture today</label>
+          <button type="button" className="btn" onClick={report}>Save report</button>
+          {store.reports.filter((r) => r.day === today).length > 0 && <span className="faint">{store.reports.filter((r) => r.day === today).length} report(s) today · in the audit trail</span>}
+        </div>
       </section>
 
       <section aria-label="Average spine density by phase" className="phase-grid">
@@ -291,7 +371,7 @@ export default function Spine() {
                 <tr><td>Back pain (0–10)</td><td>{lastWeek ? `${lastWeek.pain_avg} avg, max ${lastWeek.pain_max} (week ${lastWeek.week})` : '–'}</td><td>{(weeks.filter((w) => w.week >= 3 && w.week <= 12).reduce((a, w) => a + w.pain_avg, 0) / 10).toFixed(1)} avg</td></tr>
                 <tr><td>Hunched posture</td><td>{lastWeek ? `${lastWeek.hunched_days} of 7 days` : '–'}</td><td>Self-check in the daily check-in</td></tr>
                 {boneHealth.status === 'ready' ? (
-                  <tr><td>Lab markers</td><td colSpan={2}>From the backend: see Bone markers below</td></tr>
+                  <tr><td>Lab markers</td><td colSpan={2}>Prototype data: see Bone markers below</td></tr>
                 ) : (<>
                 <tr><td colSpan={3} className="faint">Lab values below are on-board demo data (backend not connected)</td></tr>
                 <tr><td>Urine NTx (bone breakdown)</td><td>{urine.slice(-1)[0]?.ntx} on day {urine.slice(-1)[0]?.day}</td><td>Pre-flight {base.baseline.ntx}</td></tr>
@@ -300,24 +380,22 @@ export default function Spine() {
                 <tr><td>BSAP (bone building)</td><td>{lb?.bsap} U/L</td><td>Pre-flight {base.baseline.bsap}</td></tr>
                 <tr><td>Vitamin D</td><td style={{ color: lb?.vitd < 30 ? 'var(--warn)' : undefined }}>{lb?.vitd} ng/mL</td><td>Pre-flight {base.baseline.vitd}</td></tr>
                 </>)}
+                {store.labs.length > 0 && <tr><td colSpan={3} className="faint">Entered on board (sample dates are mission days)</td></tr>}
+                {LAB_FIELDS.map((fd) => {
+                  const xs = store.labs.filter((l) => l[fd.id] != null);
+                  if (!xs.length) return null;
+                  const lastL = xs[xs.length - 1];
+                  return (
+                    <tr key={fd.id}><td>{fd.sample} {fd.label} ({fd.shows})</td><td>{lastL[fd.id]} {fd.unit} on day {lastL.day}</td>
+                      <td>{xs.length > 1 ? `First entry ${xs[0][fd.id]} on day ${xs[0].day}` : 'First entry: the next ones are compared with it'}</td></tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
         </section>
 
         <section className="col gap16">
-          <div className="panel col gap12" aria-label="Report back pain">
-            <h2 className="h2">Report back pain or posture</h2>
-            <div className="row gap12 wrap">
-              <label className="col gap4 grow" style={{ minWidth: 160 }}><span className="muted">Pain now: <strong style={{ color: pain >= 7 ? 'var(--bad-text)' : 'var(--text)' }}>{pain}/10</strong></span>
-                <input className="slider" type="range" min={0} max={10} value={pain} onChange={(e) => setPain(Number(e.target.value))} /></label>
-              <label className="col gap4"><span className="muted">Where</span>
-                <select className="field" value={where} onChange={(e) => setWhere(e.target.value)}>{['low back', 'mid back', 'neck', 'leg (spreading)'].map((w) => <option key={w}>{w}</option>)}</select></label>
-            </div>
-            <label className="row gap8" style={{ fontSize: 14 }}><input type="checkbox" checked={hunched} onChange={(e) => setHunched(e.target.checked)} style={{ width: 20, height: 20 }} />Hunched / stooped posture today</label>
-            <button type="button" className="btn" onClick={report}>Save report</button>
-            {store.reports.filter((r) => r.day === today).length > 0 && <span className="faint">{store.reports.filter((r) => r.day === today).length} report(s) today · in the audit trail</span>}
-          </div>
           <form className="panel col gap12" aria-label="Add imaging result" onSubmit={addScan}>
             <h2 className="h2">Enter device reading</h2>
             <div className="row gap12 wrap">
@@ -332,7 +410,7 @@ export default function Spine() {
         </section>
       </section>
 
-      <UltrasoundAnalyzer crew={crew} today={today} onSave={saveAnalyzed} />
+      <UltrasoundAnalyzer key={crew.id} crew={crew} today={today} onSave={saveAnalyzed} />
 
       <BoneMarkersPanel state={boneHealth} crewName={firstName} />
 

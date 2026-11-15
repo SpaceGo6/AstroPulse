@@ -1,4 +1,5 @@
-// Daily Mode home: check-in prompt, status of every indicator, link to the watchdog.
+// General health check-ups: check-in prompt and the daily indicators (heart, sleep, mood, temperature...).
+// Bone health has its own home page (Spine.jsx at '/').
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useData } from '../data/DataContext.jsx';
@@ -12,9 +13,11 @@ function valueText(ind, s) {
   return <>{ind.format(s.row)} <small>{ind.unit}</small></>;
 }
 
+const GENERAL = INDICATORS.filter((i) => i.id !== 'bone');
+
 export default function Today() {
   const { crew, rows, today, rules, environment, checkin } = useData();
-  const statuses = allStatuses(rows, today, rules, environment, INDICATORS.map((i) => i.id));
+  const statuses = allStatuses(rows, today, rules, environment, GENERAL.map((i) => i.id));
   const counts = { normal: 0, watch: 0, act: 0 };
   Object.values(statuses).forEach((s) => { counts[s.status] += 1; });
   const checkedIn = Boolean(checkin.bp);
@@ -33,8 +36,8 @@ export default function Today() {
     <>
       <header className="page-header">
         <div className="col gap4">
-          <h1 className="h1" style={{ fontSize: 32 }}>Good morning, {firstName}</h1>
-          <span className="muted" style={{ fontSize: 15 }}>{crew.name} · {crew.role} · Mission day {today} · Mars transit</span>
+          <h1 className="h1" style={{ fontSize: 32 }}>General health check-ups</h1>
+          <span className="muted" style={{ fontSize: 15 }}>{firstName}: heart rate, blood pressure, sleep, mood, temperature · Mission day {today}</span>
         </div>
         <div className="row gap8 wrap">
           <span className="pill"><Icon name="clock" size={16} />Earth delay 18 min</span>
@@ -64,9 +67,9 @@ export default function Today() {
       </section>
 
       <section aria-label="Health indicators" className="grid-4">
-        {INDICATORS.map((ind, i) => {
+        {GENERAL.map((ind, i) => {
           const s = statuses[ind.id];
-          const to = ind.id === 'bone' ? '/spine' : ind.id === 'radiation' ? '/forecast' : `/trends/${ind.id}`;
+          const to = ind.id === 'radiation' ? '/forecast' : `/trends/${ind.id}`;
           return (
             <Link key={ind.id} to={to} className={`card is-${s.status}`} style={{ animationDelay: `${0.15 + i * 0.07}s` }}>
               <div className="row between"><span className="muted" style={{ fontWeight: 600 }}>{ind.label}</span><StatusChip status={s.status} /></div>

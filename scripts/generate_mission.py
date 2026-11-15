@@ -55,7 +55,7 @@ def load_nasa():
 
 def make_crew(dxa):
     crew = [
-        {'id': 'maya', 'name': 'Cmdr. Maya Singh', 'role': 'Commander', 'dxa_subject': '1392',
+        {'id': 'chris', 'name': 'Cmdr. Chris Singh', 'role': 'Commander', 'dxa_subject': '1392',
          'bp_sys': 118, 'bp_dia': 76, 'hr_rest': 62, 'hrv': 55, 'glucose': 90, 'temp': 36.7, 'sleep_h': 6.5, 'mood': 4, 'stress': 2},
         {'id': 'leo', 'name': 'Leo Park', 'role': 'Flight Engineer', 'dxa_subject': '4011',
          'bp_sys': 122, 'bp_dia': 79, 'hr_rest': 64, 'hrv': 50, 'glucose': 92, 'temp': 36.6, 'sleep_h': 6.3, 'mood': 4, 'stress': 2},
@@ -91,7 +91,7 @@ def make_environment():
 
 
 def adherence_for(cid, day):
-    if cid != 'maya':
+    if cid != 'chris':
         return 1.0
     if 100 <= day <= 125:
         return 0.5   # busy mission phase
@@ -127,9 +127,9 @@ def make_daily(crew):
             water = round(g(2300, 200), -1)
             symptoms = []
 
-            if cid == 'maya' and 100 <= day <= 125:
+            if cid == 'chris' and 100 <= day <= 125:
                 stress = clamp(stress + 1, 1, 5)
-            if cid == 'maya' and 136 <= day <= TODAY:
+            if cid == 'chris' and 136 <= day <= TODAY:
                 k = day - 136
                 sys_ = [128, 134, 140, 145, 148][k] + g(0, 1)
                 dia = [82, 86, 89, 93, 95][k] + g(0, 0.8)
@@ -147,7 +147,7 @@ def make_daily(crew):
                    'mood': int(mood), 'stress': int(stress), 'symptoms': symptoms,
                    'ex_resist_min': resist, 'ex_cardio_min': cardio, 'water_ml': int(water),
                    'bone_pct_est': round(bone_pct, 2), 'measured': day <= TODAY}
-            if cid == 'maya' and day == TODAY:
+            if cid == 'chris' and day == TODAY:
                 row['bp_sys'], row['bp_dia'], row['bp_time'] = 148, 95, '07:41'
                 row['bp_rejected'] = {'sys': 168, 'dia': 104, 'time': '07:34',
                                       'reason': 'remeasure: jump far outside personal day-to-day change'}
@@ -291,10 +291,10 @@ TRIAGE = {
 }
 
 EVENTS = [
-    {'days': [100, 125], 'crew': ['maya'], 'event': 'Busy mission phase: resistance exercise ~50% of target', 'app_should': 'Bone forecast turns Watch'},
-    {'days': [120, 122], 'crew': ['maya', 'leo', 'sam'], 'event': 'Solar particle event: radiation spike', 'app_should': 'Radiation alert, storm-shelter action'},
-    {'days': [136, 140], 'crew': ['maya'], 'event': 'BP climbs 128 -> 148, headaches, CO2 up, sleep under 6 h', 'app_should': 'BP Watch + action plan'},
-    {'days': [140, 140], 'crew': ['maya'], 'event': 'One bad reading 168/104 at 07:34 (slipped cuff)', 'app_should': 'Re-measure prompt, not an alarm'},
+    {'days': [100, 125], 'crew': ['chris'], 'event': 'Busy mission phase: resistance exercise ~50% of target', 'app_should': 'Bone forecast turns Watch'},
+    {'days': [120, 122], 'crew': ['chris', 'leo', 'sam'], 'event': 'Solar particle event: radiation spike', 'app_should': 'Radiation alert, storm-shelter action'},
+    {'days': [136, 140], 'crew': ['chris'], 'event': 'BP climbs 128 -> 148, headaches, CO2 up, sleep under 6 h', 'app_should': 'BP Watch + action plan'},
+    {'days': [140, 140], 'crew': ['chris'], 'event': 'One bad reading 168/104 at 07:34 (slipped cuff)', 'app_should': 'Re-measure prompt, not an alarm'},
     {'days': [152, 152], 'crew': ['leo'], 'event': 'stream_emergency.json minute 75: HR > 130 and SpO2 < 90', 'app_should': 'Red Alert triage'},
 ]
 
@@ -311,10 +311,10 @@ def main():
         with open(os.path.join(DATA, name), 'w', encoding='utf-8') as fh:
             json.dump(obj, fh, indent=1, ensure_ascii=False)
 
-    m = [r for r in daily if r['crew_id'] == 'maya']
+    m = [r for r in daily if r['crew_id'] == 'chris']
     print('daily rows:', len(daily), '| environment rows:', len(env), '| stream rows:', len(stream['rows']))
-    print('maya day 140:', {k: m[TODAY - 1][k] for k in ('bp_sys', 'bp_dia', 'sleep_h', 'symptoms', 'bone_pct_est')})
-    print('maya bone % day 100/125/140/180:', [m[d - 1]['bone_pct_est'] for d in (100, 125, 140, 180)])
+    print('chris day 140:', {k: m[TODAY - 1][k] for k in ('bp_sys', 'bp_dia', 'sleep_h', 'symptoms', 'bone_pct_est')})
+    print('chris bone % day 100/125/140/180:', [m[d - 1]['bone_pct_est'] for d in (100, 125, 140, 180)])
     print('radiation cumulative day 140 / 180 (mSv):', env[TODAY - 1]['rad_cum_msv'], env[DAYS - 1]['rad_cum_msv'])
     print('leo stream minute 75:', stream['rows'][75])
 

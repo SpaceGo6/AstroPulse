@@ -51,6 +51,7 @@ export const TYPES = {
   ALERT_EXITED: 'Alert screen closed',
   SPINE_SYMPTOM: 'Back pain / posture reported',
   IMAGING_ADDED: 'Imaging result added',
+  LABS_ENTERED: 'Bone biomarkers entered',
   SPINE_DOWNLINK: 'Spine report queued for ground doctors',
   ULTRASOUND_ANALYZED: 'Ultrasound image analysed (concept demo)',
   GROUND_NOTES_SAVED: 'Ground doctor’s notes saved',

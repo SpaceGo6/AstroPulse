@@ -1,13 +1,11 @@
 // Ultrasound analyzer: CONCEPT DEMO of how a future AI model would read spine ultrasound images.
 // Real: the image checks in the browser (brightness, contrast, sharpness) and saving the image
-// for ground review. Simulated: the density estimate, which comes from the backend's mock AI
-// endpoint and is labelled as such everywhere it appears.
-import { useCallback, useEffect, useState } from 'react';
+// for ground review. Simulated: the density estimate, from static prototype data in the app.
+import { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { Icon } from './ui.jsx';
 import { imageStats } from '../api/imageStats.js';
-import { ultrasoundSource } from '../api/boneHealthApi.js';
-import { backendIdFor, API_BASE_URL } from '../api/config.js';
+import { analyzeUltrasoundDemo, ultrasoundTrend, ULTRASOUND_LABEL } from '../api/ultrasoundDemo.js';
 
 const SAMPLE = `${import.meta.env.BASE_URL ?? '/'}samples/spine-ultrasound-sample.png`;
 const dayTxt = (d) => (d < 0 ? `L${d}` : `day ${d}`);
@@ -19,24 +17,13 @@ function ConceptChip() {
 }
 
 export default function UltrasoundAnalyzer({ crew, today, onSave }) {
-  const astronautId = backendIdFor(crew.id);
   const [img, setImg] = useState(null);         // { dataUrl, stats…, name }
   const [busy, setBusy] = useState('');         // '' | 'reading' | 'analyzing'
   const [stage, setStage] = useState(-1);       // pipeline step being shown
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
-  const [history, setHistory] = useState({ status: 'idle', trend: null });
+  const [history, setHistory] = useState({ status: 'ready', trend: ultrasoundTrend(crew.id), label: ULTRASOUND_LABEL });
   const [saved, setSaved] = useState(false);
-
-  const loadHistory = useCallback((signal) => {
-    if (!astronautId) return;
-    setHistory((h) => ({ ...h, status: 'loading' }));
-    ultrasoundSource.history(astronautId, { signal })
-      .then((r) => setHistory({ status: 'ready', trend: r.trend, label: r.label }))
-      .catch((e) => { if (!signal?.aborted) setHistory({ status: 'error', trend: null, error: e }); });
-  }, [astronautId]);
-  useEffect(() => { const c = new AbortController(); loadHistory(c.signal); return () => c.abort(); }, [loadHistory]);
-  useEffect(() => { setImg(null); setResult(null); setError(''); setSaved(false); }, [crew.id]);
 
   const pick = async (fileOrUrl, name) => {
     setError(''); setResult(null); setSaved(false); setStage(-1); setBusy('reading');
@@ -45,13 +32,13 @@ export default function UltrasoundAnalyzer({ crew, today, onSave }) {
   };
 
   const analyze = async () => {
-    if (!img || !astronautId) return;
+    if (!img) return;
     setError(''); setResult(null); setSaved(false); setBusy('analyzing'); setStage(0);
     try {
-      const r = await ultrasoundSource.analyze(astronautId, { missionDay: today, image: img });
+      const r = analyzeUltrasoundDemo({ crewId: crew.id, missionDay: today, image: img });
       for (let i = 1; i <= r.pipeline.length; i += 1) { await new Promise((ok) => setTimeout(ok, 380)); setStage(i); }
       setResult(r);
-      if (r.status === 'estimated') loadHistory();
+      if (r.status === 'estimated') setHistory({ status: 'ready', trend: ultrasoundTrend(crew.id), label: ULTRASOUND_LABEL });
     } catch (e) { setError(e.message); setStage(-1); }
     setBusy('');
   };
@@ -74,13 +61,10 @@ export default function UltrasoundAnalyzer({ crew, today, onSave }) {
       </div>
       <span className="row gap8" style={{ fontSize: 14, lineHeight: 1.5, color: 'var(--text-2)', alignItems: 'flex-start' }}>
         <Icon name="info" size={18} />
-        <span>The image checks are real. The density estimate is <strong>simulated</strong> by a mock AI service to show the workflow. It is not a measurement and does not feed the forecast. The ground doctors check every result against the device reading.</span>
+        <span>The image checks are real. The density estimate is <strong>simulated</strong> from prototype data in the app. It is not a measurement and does not feed the forecast. The ground doctors check every result against the device reading.</span>
       </span>
 
-      {!astronautId ? (
-        <span className="faint">The concept demo runs on backend record AST-001 (Maya). Switch crew to try it.</span>
-      ) : (
-        <div className="split" style={{ '--cols': '1fr 1fr' }}>
+      <div className="split" style={{ '--cols': '1fr 1fr' }}>
           <div className="col gap12">
             <div className="row gap8 wrap">
               <label className="btn" style={{ cursor: 'pointer' }}>
@@ -104,12 +88,7 @@ export default function UltrasoundAnalyzer({ crew, today, onSave }) {
                 </button>
               </>
             )}
-            {error && (
-              <span role="alert" className="col gap4" style={{ fontSize: 14, color: 'var(--warn)' }}>
-                {error}
-                {/reach|answer/.test(error) && <span className="faint">Start the backend: <code>cd backend && npm run dev</code> ({API_BASE_URL}).</span>}
-              </span>
-            )}
+            {error && <span role="alert" style={{ fontSize: 14, color: 'var(--warn)' }}>{error}</span>}
           </div>
 
           <div className="col gap12" aria-live="polite">
@@ -157,8 +136,6 @@ export default function UltrasoundAnalyzer({ crew, today, onSave }) {
 
             <div className="col gap8" aria-label="Simulated ultrasound trend">
               <div className="row between wrap gap8"><span className="eyebrow">Ultrasound trend (simulated)</span>{t?.status === 'analyzed' && <span className="faint">{signed(t.changePercentFromBaseline)}% since {dayTxt(t.baseline.missionDay)} · slope {signed(t.observedSlopePer30Days)} {unitTxt(t.unit)}/30 days</span>}</div>
-              {history.status === 'error' && <span className="faint">Trend unavailable: {history.error?.message}</span>}
-              {history.status === 'loading' && !t && <span className="faint">Loading trend…</span>}
               {t?.status === 'insufficient_data' && <span className="faint">Not enough scans for a trend yet.</span>}
               {t?.status === 'analyzed' && (
                 <div style={{ height: 160 }} role="img" aria-label={`Simulated spine ultrasound estimates: ${t.points.map((p) => `${dayTxt(p.missionDay)} ${p.value}`).join(', ')}`}>
@@ -176,8 +153,7 @@ export default function UltrasoundAnalyzer({ crew, today, onSave }) {
               )}
             </div>
           </div>
-        </div>
-      )}
+      </div>
     </section>
   );
 }

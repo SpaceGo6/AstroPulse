@@ -17,19 +17,19 @@ const setup = (id) => {
 };
 
 describe('spine', () => {
-  it('Maya: forecast past watch level at current pace, back under it on target', () => {
-    const { f } = setup('maya');
+  it('Chris: forecast past watch level at current pace, back under it on target', () => {
+    const { f } = setup('chris');
     expect(f.status).toBe('watch');
     expect(f.landingTargetPct).toBeGreaterThan(f.landingCurrentPct);
   });
-  it('Maya: several signals agree, so one pattern alert fires', () => {
-    const { rows, f, alerts } = setup('maya');
-    const on = spineSignals({ rows, crewSpine: spine.crew.maya, forecast: f, today: T }).filter((x) => x.on).map((x) => x.id);
+  it('Chris: several signals agree, so one pattern alert fires', () => {
+    const { rows, f, alerts } = setup('chris');
+    const on = spineSignals({ rows, crewSpine: spine.crew.chris, forecast: f, today: T }).filter((x) => x.on).map((x) => x.id);
     expect(on).toEqual(expect.arrayContaining(['exercise', 'ntx', 'scan', 'pain']));
     expect(alerts.map((a) => a.id)).toContain('pattern');
   });
-  it('Maya: behind on exercise this week gets a nudge', () => {
-    expect(setup('maya').alerts.map((a) => a.id)).toContain('week');
+  it('Chris: behind on exercise this week gets a nudge', () => {
+    expect(setup('chris').alerts.map((a) => a.id)).toContain('week');
   });
   it('Leo: one high urine calcium alone is a signal, not an alert', () => {
     const { rows, f, alerts } = setup('leo');
@@ -38,7 +38,7 @@ describe('spine', () => {
     expect(alerts).toEqual([]);
   });
   it('phase averages: ground > in flight > post-flight at landing', () => {
-    const { ph } = setup('maya');
+    const { ph } = setup('chris');
     expect(ph.ground.avg).toBeGreaterThan(ph.flight.avg);
     expect(ph.post.points[0].bmd).toBeLessThan(ph.flight.avg);
     expect(ph.post.points[2].bmd).toBeGreaterThan(ph.post.points[0].bmd); // recovering
@@ -52,8 +52,8 @@ describe('spine', () => {
     expect(a[0].status).toBe('act');
   });
   it('downlink packet carries all three averages', () => {
-    const { f, ph, alerts } = setup('maya');
-    const p = downlinkPacket({ crew: crew[0], today: T, phases: ph, forecast: f, alerts, crewSpine: spine.crew.maya, reports: [] });
+    const { f, ph, alerts } = setup('chris');
+    const p = downlinkPacket({ crew: crew[0], today: T, phases: ph, forecast: f, alerts, crewSpine: spine.crew.chris, reports: [] });
     expect(Object.keys(p.averages_g_cm2)).toHaveLength(3);
   });
 });

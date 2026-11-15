@@ -5,7 +5,7 @@
    125
   ],
   "crew": [
-   "maya"
+   "chris"
   ],
   "event": "Busy mission phase: resistance exercise ~50% of target",
   "app_should": "Bone forecast turns Watch"
@@ -16,7 +16,7 @@
    122
   ],
   "crew": [
-   "maya",
+   "chris",
    "leo",
    "sam"
   ],
@@ -29,7 +29,7 @@
    140
   ],
   "crew": [
-   "maya"
+   "chris"
   ],
   "event": "BP climbs 128 -> 148, headaches, CO2 up, sleep under 6 h",
   "app_should": "BP Watch + action plan"
@@ -40,7 +40,7 @@
    140
   ],
   "crew": [
-   "maya"
+   "chris"
   ],
   "event": "One bad reading 168/104 at 07:34 (slipped cuff)",
   "app_should": "Re-measure prompt, not an alarm"

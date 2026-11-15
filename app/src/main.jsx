@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 import { DataProvider } from './data/DataContext.jsx';
 import Layout from './components/Layout.jsx';
@@ -13,6 +13,9 @@ import BodyMap from './pages/BodyMap.jsx';
 import Alert from './pages/Alert.jsx';
 import Audit from './pages/Audit.jsx';
 import Spine from './pages/Spine.jsx';
+import { startAnalytics } from './firebase.js';
+
+startAnalytics();
 
 // HashRouter: works from any static host or straight from disk, no server routing needed.
 createRoot(document.getElementById('root')).render(
@@ -21,11 +24,12 @@ createRoot(document.getElementById('root')).render(
       <HashRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route index element={<Today />} />
+            <Route index element={<Spine />} />
+            <Route path="health" element={<Today />} />
             <Route path="checkin" element={<CheckIn />} />
             <Route path="remeasure" element={<Remeasure />} />
             <Route path="trends/:id" element={<Trends />} />
-            <Route path="spine" element={<Spine />} />
+            <Route path="spine" element={<Navigate to="/" replace />} />
             <Route path="forecast" element={<Forecast />} />
             <Route path="body" element={<BodyMap />} />
             <Route path="audit" element={<Audit />} />

@@ -19,7 +19,7 @@ const writeStore = (key, value) => { try { localStorage.setItem(key, JSON.string
 export function DataProvider({ children }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [crewId, setCrewIdState] = useState('maya');
+  const [crewId, setCrewIdState] = useState('chris');
   const [today] = useState(140); // the demo story is mission day 140
   const [checkin, setCheckin] = useState(() => readStore(CHECKIN_KEY, {}));
   const [audit, setAudit] = useState(() => readStore(AUDIT_KEY, []));

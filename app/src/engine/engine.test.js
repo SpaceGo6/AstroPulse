@@ -9,33 +9,33 @@ const daily = load('daily.json');
 const env = load('environment.json');
 const rules = load('rules.json');
 const stream = load('stream_emergency.json');
-const maya = rowsFor(daily, 'maya');
+const chris = rowsFor(daily, 'chris');
 const sam = rowsFor(daily, 'sam');
 
-describe('Maya, day 140', () => {
-  it('blood pressure is Watch (above her space baseline 3 days)', () => {
-    expect(indicatorStatus('bp', maya, 140, rules, env).status).toBe('watch');
+describe('Chris, day 140', () => {
+  it('blood pressure is Watch (above their space baseline 3 days)', () => {
+    expect(indicatorStatus('bp', chris, 140, rules, env).status).toBe('watch');
   });
   it('the slipped-cuff reading 168 asks for a re-measure', () => {
-    expect(needsRemeasure(maya, 'bp_sys', 140, 168).remeasure).toBe(true);
+    expect(needsRemeasure(chris, 'bp_sys', 140, 168).remeasure).toBe(true);
   });
   it('a reading back toward normal (123) does not ask for a re-measure', () => {
-    expect(needsRemeasure(maya, 'bp_sys', 140, 123).remeasure).toBe(false);
+    expect(needsRemeasure(chris, 'bp_sys', 140, 123).remeasure).toBe(false);
   });
   it('the confirmed reading 148 does not', () => {
-    expect(needsRemeasure(maya, 'bp_sys', 140, 148).remeasure).toBe(false);
+    expect(needsRemeasure(chris, 'bp_sys', 140, 148).remeasure).toBe(false);
   });
   it('bone forecast at landing is past the watch level', () => {
-    const f = boneForecast(maya, 140, rules);
+    const f = boneForecast(chris, 140, rules);
     expect(f.status).toBe('watch');
     expect(f.landingOnTarget).toBeGreaterThan(f.landingCurrent);
   });
   it('sleep is Watch (under 6 h for 3 nights)', () => {
-    expect(indicatorStatus('sleep', maya, 140, rules, env).status).toBe('watch');
+    expect(indicatorStatus('sleep', chris, 140, rules, env).status).toBe('watch');
   });
   it('temperature and blood sugar stay Normal', () => {
-    expect(indicatorStatus('temp', maya, 140, rules, env).status).toBe('normal');
-    expect(indicatorStatus('glucose', maya, 140, rules, env).status).toBe('normal');
+    expect(indicatorStatus('temp', chris, 140, rules, env).status).toBe('normal');
+    expect(indicatorStatus('glucose', chris, 140, rules, env).status).toBe('normal');
   });
 });
 

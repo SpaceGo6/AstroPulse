@@ -49,10 +49,10 @@ export default function CheckIn() {
   const [params, setParams] = useSearchParams();
   const stepIdx = Math.min(STEPS.length, Math.max(0, Number(params.get('step') || 1) - 1));
   const row = rows.find((r) => r.day === today);
-  const isStoryDay = crew.id === 'maya' && row.bp_rejected;
+  const isStoryDay = crew.id === 'chris' && row.bp_rejected;
   const savedKeys = new Set(Object.keys(checkin));
 
-  // Starting values: the story's slipped-cuff reading for Maya, otherwise today's data.
+  // Starting values: the story's slipped-cuff reading for Chris, otherwise today's data.
   const [vals, setVals] = useState(() => ({
     bp_sys: checkin.bp ? checkin.bp.sys : isStoryDay ? row.bp_rejected.sys : row.bp_sys,
     bp_dia: checkin.bp ? checkin.bp.dia : isStoryDay ? row.bp_rejected.dia : row.bp_dia,
@@ -81,7 +81,7 @@ export default function CheckIn() {
             })}
           </ul>
           <div className="row gap12 wrap">
-            <Link to="/" className="btn btn-primary">See today's status<Icon name="next" /></Link>
+            <Link to="/health" className="btn btn-primary">See today's status<Icon name="next" /></Link>
             <Link to="/trends/bp" className="btn">Blood pressure trend</Link>
           </div>
         </div>

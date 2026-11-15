@@ -6,4 +6,5 @@ node_modules/
 **/.DS_Store
 app/dist/
 __pycache__/
+firebase-debug.log
 *.pyc

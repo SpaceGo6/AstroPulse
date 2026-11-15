@@ -1,0 +1,237 @@
+{
+  "astronautId": "AST-001",
+  "analysisType": "bone_health_multimodal",
+  "latestMissionDay": 90,
+  "dataSource": "simulated",
+  "boneMarkers": {
+    "astronautId": "AST-001",
+    "analysisType": "bone_remodeling",
+    "source": "simulated",
+    "metrics": {
+      "serum_ctx": {
+        "status": "analyzed",
+        "baseline": 0.3,
+        "latest": 0.42,
+        "unit": "ng/mL",
+        "baselineMissionDay": -7,
+        "missionDay": 90,
+        "changePercent": 40,
+        "trend": "increasing",
+        "sampleCount": 5
+      },
+      "serum_p1np": {
+        "status": "analyzed",
+        "baseline": 50,
+        "latest": 45,
+        "unit": "ug/L",
+        "baselineMissionDay": -7,
+        "missionDay": 90,
+        "changePercent": -10,
+        "trend": "decreasing",
+        "sampleCount": 5
+      },
+      "urine_calcium_24h": {
+        "status": "analyzed",
+        "baseline": 160,
+        "latest": 250,
+        "unit": "mg/24h",
+        "baselineMissionDay": -7,
+        "missionDay": 90,
+        "changePercent": 56.25,
+        "trend": "increasing",
+        "sampleCount": 5
+      }
+    },
+    "boneDensityLossPercent": null,
+    "clinicalRisk": "not_assessed",
+    "note": "Descriptive biomarker changes only. These do not measure spinal bone density or diagnose bone loss."
+  },
+  "biomarkerTrends": {
+    "astronautId": "AST-001",
+    "analysisType": "bone_marker_trends",
+    "expectedIntervalDays": 30,
+    "metrics": {
+      "serum_ctx": {
+        "status": "analyzed",
+        "unit": "ng/mL",
+        "sampleCount": 5,
+        "baseline": 0.3,
+        "latest": 0.42,
+        "latestMissionDay": 90,
+        "changePercentFromBaseline": 40,
+        "observedSlopePer30Days": 0.0375,
+        "direction": "increasing",
+        "samplingGaps": [],
+        "points": [
+          {
+            "missionDay": -7,
+            "value": 0.3,
+            "phase": "preflight",
+            "collectedAt": "2026-01-01T08:00:00Z"
+          },
+          {
+            "missionDay": 15,
+            "value": 0.32,
+            "phase": "inflight",
+            "collectedAt": "2026-01-23T08:00:00Z"
+          },
+          {
+            "missionDay": 30,
+            "value": 0.35,
+            "phase": "inflight",
+            "collectedAt": "2026-02-07T08:00:00Z"
+          },
+          {
+            "missionDay": 60,
+            "value": 0.38,
+            "phase": "inflight",
+            "collectedAt": "2026-03-09T08:00:00Z"
+          },
+          {
+            "missionDay": 90,
+            "value": 0.42,
+            "phase": "inflight",
+            "collectedAt": "2026-04-08T08:00:00Z"
+          }
+        ]
+      },
+      "serum_p1np": {
+        "status": "analyzed",
+        "unit": "ug/L",
+        "sampleCount": 5,
+        "baseline": 50,
+        "latest": 45,
+        "latestMissionDay": 90,
+        "changePercentFromBaseline": -10,
+        "observedSlopePer30Days": -1.5059,
+        "direction": "decreasing",
+        "samplingGaps": [],
+        "points": [
+          {
+            "missionDay": -7,
+            "value": 50,
+            "phase": "preflight",
+            "collectedAt": "2026-01-01T08:00:00Z"
+          },
+          {
+            "missionDay": 15,
+            "value": 49,
+            "phase": "inflight",
+            "collectedAt": "2026-01-23T08:00:00Z"
+          },
+          {
+            "missionDay": 30,
+            "value": 48,
+            "phase": "inflight",
+            "collectedAt": "2026-02-07T08:00:00Z"
+          },
+          {
+            "missionDay": 60,
+            "value": 47,
+            "phase": "inflight",
+            "collectedAt": "2026-03-09T08:00:00Z"
+          },
+          {
+            "missionDay": 90,
+            "value": 45,
+            "phase": "inflight",
+            "collectedAt": "2026-04-08T08:00:00Z"
+          }
+        ]
+      },
+      "urine_calcium_24h": {
+        "status": "analyzed",
+        "unit": "mg/24h",
+        "sampleCount": 5,
+        "baseline": 160,
+        "latest": 250,
+        "latestMissionDay": 90,
+        "changePercentFromBaseline": 56.25,
+        "observedSlopePer30Days": 27.8078,
+        "direction": "increasing",
+        "samplingGaps": [],
+        "points": [
+          {
+            "missionDay": -7,
+            "value": 160,
+            "phase": "preflight",
+            "collectedAt": "2026-01-01T08:00:00Z"
+          },
+          {
+            "missionDay": 15,
+            "value": 175,
+            "phase": "inflight",
+            "collectedAt": "2026-01-23T08:00:00Z"
+          },
+          {
+            "missionDay": 30,
+            "value": 190,
+            "phase": "inflight",
+            "collectedAt": "2026-02-07T08:00:00Z"
+          },
+          {
+            "missionDay": 60,
+            "value": 215,
+            "phase": "inflight",
+            "collectedAt": "2026-03-09T08:00:00Z"
+          },
+          {
+            "missionDay": 90,
+            "value": 250,
+            "phase": "inflight",
+            "collectedAt": "2026-04-08T08:00:00Z"
+          }
+        ]
+      }
+    },
+    "boneDensityLossPercent": null,
+    "clinicalRisk": "not_assessed",
+    "note": "Descriptive trends from observed or simulated biomarkers only. No spinal BMD or clinical risk is inferred."
+  },
+  "context": {
+    "astronautId": "AST-001",
+    "symptoms": {
+      "latest": {
+        "astronautId": "AST-001",
+        "missionDay": 90,
+        "backPainSeverity": 4,
+        "postureChange": true,
+        "source": "simulated"
+      },
+      "recordCount": 4,
+      "invalidRecordCount": 0
+    },
+    "exercise": {
+      "adherencePercent": 75,
+      "totalPlannedMinutes": 240,
+      "totalCompletedMinutes": 180,
+      "recordCount": 4,
+      "invalidRecordCount": 0
+    },
+    "observations": [
+      "Latest reported back pain: 4/10",
+      "Posture change reported",
+      "Recorded exercise-minute adherence: 75%"
+    ],
+    "clinicalRisk": "not_assessed",
+    "note": "Exercise adherence describes only the recorded sessions, not an entire mission. Symptoms are self-reported."
+  },
+  "assessment": {
+    "status": "descriptive_only",
+    "observations": [
+      "Serum CTX increased by 40% compared with preflight baseline",
+      "Serum P1NP decreased by 10% compared with preflight baseline",
+      "24-hour urinary calcium increased by 56.25% compared with preflight baseline",
+      "Reported back pain: 4/10 on mission day 90",
+      "A posture change was reported",
+      "Recorded exercise-minute adherence: 75%"
+    ],
+    "dataQualityFlags": [],
+    "missingData": [],
+    "measuredSpinalBmdChangePercent": null,
+    "predictedSpinalBmd": null,
+    "clinicalRisk": "not_assessed",
+    "medicalRecommendations": [],
+    "note": "These markers do not directly measure spinal bone density or establish an individual clinical risk. Review collection conditions and follow crew medical protocols."
+  }
+}

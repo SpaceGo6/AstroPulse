@@ -66,11 +66,3 @@ export const boneHealthSource = {
   },
 };
 
-// CONCEPT DEMO: the backend's mock "AI" reader for spine ultrasound images. Only image
-// statistics and a hash are sent (not the picture); the answer is simulated and labelled so.
-export const ultrasoundSource = {
-  analyze: (astronautId, { missionDay, image }, opts) => requestJson('POST',
-    `/api/mock/astronauts/${encodeURIComponent(astronautId)}/ultrasound/analyze`,
-    { missionDay, image: { sha256: image.sha256, width: image.width, height: image.height, brightness: image.brightness, contrast: image.contrast, sharpness: image.sharpness } }, opts),
-  history: (astronautId, opts) => getJson(`/api/mock/astronauts/${encodeURIComponent(astronautId)}/ultrasound/history`, opts),
-};

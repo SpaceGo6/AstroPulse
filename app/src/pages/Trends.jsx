@@ -90,7 +90,7 @@ export default function Trends() {
           {s.status !== 'normal' && <span className="muted" style={{ fontSize: 13 }}>Flight surgeon replies take ~36 min round trip from here.</span>}
           <div className="row gap12" style={{ marginTop: 'auto' }}>
             <button type="button" className="btn grow">Preview report</button>
-            <Link to="/" className="btn btn-primary grow">Got it</Link>
+            <Link to="/health" className="btn btn-primary grow">Got it</Link>
           </div>
         </section>
       </div>

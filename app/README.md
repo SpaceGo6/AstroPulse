@@ -14,7 +14,7 @@ npm run build      # static build in dist/ (works from any static host, no serve
 
 If the data changes, regenerate it first: `python3 scripts/process_nasa_dxa.py`, `process_nasa_screening.py`, `process_nasa_c3.py`, `generate_mission.py` (from the repo root).
 
-## Demo flow (Maya, mission day 140)
+## Demo flow (Chris, mission day 140)
 
 1. **Today**: 3 to watch (blood pressure, sleep, bone forecast).
 2. **Start check-in** → Save the pre-filled 168/104 → **Re-measure** screen → *Re-measure now* → 148/95 confirmed → *See what this means*.
@@ -33,7 +33,7 @@ Use the crew selector (bottom of the sidebar) to switch to Leo or Sam (healthy c
 | --- | --- |
 | `src/engine/engine.js` | Pure functions: personal baseline, status (Normal/Watch/Act), re-measure check, bone + radiation forecast, watchdog |
 | `src/engine/indicators.js` | The 8 indicators and how to read them from `daily.json` |
-| `src/engine/engine.test.js` | Tests: Maya BP + sleep Watch, 168 → re-measure, 148 → OK, bone Watch, Sam normal, watchdog fires at minute 75 |
+| `src/engine/engine.test.js` | Tests: Chris BP + sleep Watch, 168 → re-measure, 148 → OK, bone Watch, Sam normal, watchdog fires at minute 75 |
 | `src/data/DataContext.jsx` | Loads the bundled JSON once; holds crew, mission day, today's check-in (localStorage) |
 | `src/sync/channel.js` | BroadcastChannel stand-in for the onboard hub |
 | `src/audit/audit.js` | Tamper-evident audit trail: `makeEntry` (hash-chained, append-only) and `verifyChain` |

@@ -31,7 +31,7 @@ Standard library only, no installs.
 | `nasa/spine_bedrest_timeline.csv` | One row per participant per phase: lumbar + thoracic spine density (from whole-body scans), % change | 114 rows |
 | `nasa/spine_bedrest_phases.json` | Average spine density per phase: ground, end of bed rest, after, 6 months, 1 year (all people and same-people averages) | 5 phases |
 | `spine.json` | Simulated spine tracking per crew: ground DXA, monthly in-flight ultrasound, urine NTx every 14 days, blood every 30 days, weekly back pain/posture, the test schedule with cost | 3 crew |
-| `crew.json` | 3 simulated crew (Maya, Leo, Sam) with baselines; pre-flight bone values are real participants' pre-bed-rest scans | 3 |
+| `crew.json` | 3 simulated crew (Chris, Leo, Sam) with baselines; pre-flight bone values are real participants' pre-bed-rest scans | 3 |
 | `daily.json` | One row per crew member per day, days 1–180 (`measured: false` after day 140 = forecast period) | 540 |
 | `environment.json` | Daily cabin CO2, radiation dose, cumulative dose, solar-event flag | 180 |
 | `stream_emergency.json` | Leo's per-minute wearable feed, mission day 152, for the Red Alert demo | 120 |
@@ -42,12 +42,12 @@ Standard library only, no installs.
 ## `daily.json` fields
 
 `crew_id, day, bp_sys, bp_dia, hr_rest, hrv, spo2_min, glucose, temp, sleep_h, mood, stress, symptoms[], ex_resist_min, ex_cardio_min, water_ml, bone_pct_est, measured`
-Maya day 140 also has `bp_time` and `bp_rejected` (the slipped-cuff reading).
+Chris day 140 also has `bp_time` and `bp_rejected` (the slipped-cuff reading).
 
 ## Key values for the demo
 
-- Maya day 140: BP 148/95 (rejected first reading 168/104), sleep 5.4 h, headache, bone 98.15% of pre-flight
-- Maya bone forecast at landing (day 180), current pace: 97.27% → loss 2.7% > 2.5% watch level
+- Chris day 140: BP 148/95 (rejected first reading 168/104), sleep 5.4 h, headache, bone 98.15% of pre-flight
+- Chris bone forecast at landing (day 180), current pace: 97.27% → loss 2.7% > 2.5% watch level
 - Radiation cumulative: 279 mSv at day 140, 352 mSv at day 180 (600 mSv career limit)
 - Leo stream minute 75: HR 132, SpO2 88% → Red Alert
 
@@ -56,7 +56,7 @@ Maya day 140 also has `bp_time` and `bp_rejected` (the slipped-cuff reading).
 - Pre-flight spine value per crew = real pilot participant's dedicated L1–L4 scan. Everything after is simulated.
 - Loss model: 1.0 %/month with no exercise, 0.3 %/month at the 150 min/week target (assumption, based on NASA ~1 %/month lumbar spine, LeBlanc 2000 / Lang 2004).
 - Recovery after landing: exponential, half-life 276 days (Sibonga 2007 fit). Real recovery is often incomplete (Gabel 2022).
-- Maya day 140: spine −2.1%, forecast at landing −2.9% at current pace (watch level −2.5%), −2.5% on target; urine NTx up; back pain up. Sam: vitamin D 29.4 ng/mL (low). Leo: no alerts.
+- Chris day 140: spine −2.1%, forecast at landing −2.9% at current pace (watch level −2.5%), −2.5% on target; urine NTx up; back pain up. Sam: vitamin D 29.4 ng/mL (low). Leo: no alerts.
 - In-flight ultrasound = REMS-type (radiation-free, FDA-cleared for spine BMD on Earth; **not yet flown**). This is our proposal.
 
 ## Real NASA evidence in one line each

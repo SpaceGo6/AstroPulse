@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 
 const paths = {
+  heart: <><path d="M12 20.5s-7.5-4.6-9.4-9.4A5.2 5.2 0 0 1 12 6.3a5.2 5.2 0 0 1 9.4 4.8c-1.9 4.8-9.4 9.4-9.4 9.4z" /><path d="M6.5 12h3l1.5-2.5 2 4.5 1.5-2h3" /></>,
   home: <path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" />,
   checkin: <><rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 3h6v3H9zM9 13l2 2 4-4" /></>,
   forecast: <><path d="M3 3v18h18" /><path d="M7 14l4-4 3 3 3-3" /><path d="M17 10l3-3" strokeDasharray="2 2" /></>,
